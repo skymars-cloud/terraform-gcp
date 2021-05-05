@@ -1,28 +1,27 @@
 variable "organization" {
-  default = "gsecurity.net"
+  type = string
 }
 variable "project_id" {
-  default = "prj-dev-palani-ram"
+  type = string
 }
 
 variable "environment" {
-  type    = string
-  default = "dev"
+  type = string
 }
 
 variable "primary_region" {
-  type    = string
-  default = "us-central1"
+  type = string
 }
 
 variable "primary_zone" {
-  type    = string
-  default = "us-central1-f"
+  type = string
 }
 
 variable "created_by" {
-  type    = string
-  default = "Palani_Ram"
+  type = string
+}
+variable "service_account_id" {
+  type = string
 }
 
 
