@@ -27,7 +27,5 @@ variable "service_account_id" {
 variable "create_compute_instance" {
   type = bool
 }
-variable "create_private_catalog" {
-  type = bool
-}
+
 

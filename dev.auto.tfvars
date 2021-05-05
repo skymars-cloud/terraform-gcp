@@ -8,5 +8,4 @@ primary_zone   = "us-central1-f"
 created_by     = "Palani_Ram"
 
 create_compute_instance = false
-create_private_catalog  = true
 
