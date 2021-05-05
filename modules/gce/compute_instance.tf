@@ -7,6 +7,7 @@ data "google_compute_image" "my_image" {
 }
 
 resource "google_compute_instance" "default" {
+  count        = var.create_compute_instance ? 1 : 0
   name         = var.name
   machine_type = var.machine_type
   zone         = var.primary_zone

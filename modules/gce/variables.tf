@@ -21,5 +21,8 @@ variable "primary_zone" {
   type = string
 }
 
+variable "create_compute_instance" {
+  type = bool
+}
 
 
