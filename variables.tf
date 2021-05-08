@@ -1,6 +1,11 @@
-variable "organization" {
+variable "org_name" {
   type = string
 }
+
+variable "org_id" {
+  type = string
+}
+
 variable "project_id" {
   type = string
 }

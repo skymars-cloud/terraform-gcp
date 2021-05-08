@@ -5,11 +5,8 @@ variable "service_account_id" {
 variable "name" {
   type = string
 }
-variable "machine_type" {
-  type = string
-}
 
-variable "organization" {
+variable "machine_type" {
   type = string
 }
 

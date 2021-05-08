@@ -1,4 +1,5 @@
-organization       = "gsecurity.net"
+org_name       = "gsecurity.net"
+org_id       = "614830067722"
 project_id         = "prj-dev-palani-ram"
 service_account_id = "srv-acct-admin"
 
