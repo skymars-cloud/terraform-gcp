@@ -6,7 +6,13 @@ variable "org_id" {
   type = string
 }
 
-variable "project_id" {
+variable "project_id_dev" {
+  type = string
+}
+variable "project_id_qa" {
+  type = string
+}
+variable "project_id_prod" {
   type = string
 }
 

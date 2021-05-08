@@ -1,4 +1,4 @@
-resource "google_project" "my_project-in-a-folder" {
+resource "google_project" "project-in-a-folder" {
   name       = var.project_name
   project_id = var.project_id
   folder_id  = google_folder.department.name

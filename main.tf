@@ -14,8 +14,8 @@ module "forseti" {
   version                  = "~> 5.2.0"
   gsuite_admin_email       = "cloud-foundation-forseti-15728@prj-dev-palani-ram.iam.gserviceaccount.com"
   domain                   = "prj-dev-palani-ram.iam.gserviceaccount.com"
-  project_id               = "prj-dev-palani-ram"
-  org_id                   = "614830067722"
+  project_id               = var.project_id_dev
+  org_id                   = var.org_id
   config_validator_enabled = "true"
 }
 
@@ -23,6 +23,6 @@ module "project" {
   source       = "./modules/project"
   folder_name  = "palaniram"
   org_id       = var.org_id
-  project_id   = "prj-prod-palani-ram"
-  project_name = "prj-prod-palani-ram"
+  project_id   = var.project_id_prod
+  project_name = var.project_id_prod
 }
