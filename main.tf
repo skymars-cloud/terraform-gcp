@@ -10,8 +10,8 @@ module "compute_instance" {
 }
 
 module "forseti" {
-  source  = "terraform-google-modules/forseti/google"
-  version = "~> 5.2.0"
+  source                   = "terraform-google-modules/forseti/google"
+  version                  = "~> 5.2.0"
   gsuite_admin_email       = "cloud-foundation-forseti-15728@prj-dev-palani-ram.iam.gserviceaccount.com"
   domain                   = "prj-dev-palani-ram.iam.gserviceaccount.com"
   project_id               = "prj-dev-palani-ram"
@@ -20,9 +20,9 @@ module "forseti" {
 }
 
 module "project" {
-  source = "./modules/project"
-  folder_name = "palaniram"
-  org_id = var.org_id
-  project_id = "prj-prod-palani-ram"
+  source       = "./modules/project"
+  folder_name  = "palaniram"
+  org_id       = var.org_id
+  project_id   = "prj-prod-palani-ram"
   project_name = "prj-prod-palani-ram"
 }
