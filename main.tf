@@ -9,7 +9,7 @@ module "compute_instance" {
   create_compute_instance = var.create_compute_instance
 }
 
-module "forseti" {
+module "forseti-on-compute-instance" {
   source                   = "terraform-google-modules/forseti/google"
   version                  = "~> 5.2.0"
   gsuite_admin_email       = "cloud-foundation-forseti-15728@prj-dev-palani-ram.iam.gserviceaccount.com"
@@ -19,6 +19,7 @@ module "forseti" {
   config_validator_enabled = "true"
 }
 
+// create palaniram/prj-prod-palani-ram
 module "project" {
   source       = "./modules/project"
   folder_name  = "palaniram"
