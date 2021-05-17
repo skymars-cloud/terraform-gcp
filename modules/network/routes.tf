@@ -15,5 +15,5 @@ module "routes" {
       next_hop_internet = "true"
     }
   ]
-  //  depends_on = [module.vpc]
+  depends_on = [module.vpc]
 }

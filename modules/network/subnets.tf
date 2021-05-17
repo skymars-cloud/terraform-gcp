@@ -1,11 +1,9 @@
 
 module "subnets" {
   // https://registry.terraform.io/modules/terraform-google-modules/network/google/latest
-  //  source       = "terraform-google-modules/network/google"
-  source     = "terraform-google-modules/network/google//modules/subnets"
-  version    = "3.2.2"
-  project_id = var.project_id
-  //  network_name = var.vpc_name
+  source       = "terraform-google-modules/network/google//modules/subnets"
+  version      = "3.2.2"
+  project_id   = var.project_id
   network_name = module.vpc.network_name
 
   subnets = [

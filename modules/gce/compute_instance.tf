@@ -23,7 +23,7 @@ resource "google_compute_instance" "vm" {
   machine_type = var.machine_type
   zone         = var.primary_zone
 
-  tags = [var.environment, var.name, "egress-inet"]
+  tags = ["ingress-inet", "egress-inet"]
 
   boot_disk {
     initialize_params {
