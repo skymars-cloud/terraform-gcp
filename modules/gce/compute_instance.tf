@@ -17,13 +17,11 @@ data "google_compute_subnetwork" "subnetwork" {
 }
 
 resource "google_compute_instance" "vm" {
-  count = var.create_compute_instance ? 1 : 0
-  //  project      = var.project_id
+  count        = var.create_compute_instance ? 1 : 0
   name         = var.name
   machine_type = var.machine_type
   zone         = var.primary_zone
-
-  tags = ["ingress-inet", "egress-inet"]
+  tags         = ["ingress-inet", "egress-inet"]
 
   boot_disk {
     initialize_params {
@@ -34,8 +32,7 @@ resource "google_compute_instance" "vm" {
   }
 
   network_interface {
-    //    subnetwork = data.google_compute_subnetwork.subnetwork.name
-    subnetwork = "primary-dmz-subnet"
+    subnetwork = data.google_compute_subnetwork.subnetwork.name
     access_config {
       // Ephemeral IP
     }
