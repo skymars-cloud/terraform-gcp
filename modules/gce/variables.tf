@@ -25,3 +25,12 @@ variable "create_compute_instance" {
 variable "project_id" {
   type = string
 }
+variable "vpc_name" {
+  type = string
+}
+variable "subnet" {
+  type = string
+}
+variable "region" {
+  type = string
+}

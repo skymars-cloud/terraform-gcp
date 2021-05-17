@@ -1,19 +1,29 @@
 data "google_service_account" "owner" {
   account_id = var.service_account_id
 }
-data "google_compute_image" "my_image" {
+
+data "google_compute_image" "debian" {
   family  = "debian-9"
   project = "debian-cloud"
 }
 
-resource "google_compute_instance" "default" {
-  count        = var.create_compute_instance ? 1 : 0
-  project      = var.project_id
+data "google_compute_network" "network" {
+  name = var.vpc_name
+}
+
+data "google_compute_subnetwork" "subnetwork" {
+  name   = var.subnet
+  region = var.region
+}
+
+resource "google_compute_instance" "vm" {
+  count = var.create_compute_instance ? 1 : 0
+  //  project      = var.project_id
   name         = var.name
   machine_type = var.machine_type
   zone         = var.primary_zone
 
-  tags = [var.environment, var.name]
+  tags = [var.environment, var.name, "egress-inet"]
 
   boot_disk {
     initialize_params {
@@ -24,8 +34,8 @@ resource "google_compute_instance" "default" {
   }
 
   network_interface {
-    network = "default"
-
+    //    subnetwork = data.google_compute_subnetwork.subnetwork.name
+    subnetwork = "primary-dmz-subnet"
     access_config {
       // Ephemeral IP
     }
@@ -44,7 +54,8 @@ resource "google_compute_instance" "default" {
     scopes = ["cloud-platform"]
   }
   shielded_instance_config {
-    enable_integrity_monitoring = false
-    enable_vtpm                 = false
+    enable_integrity_monitoring = true
+    enable_vtpm                 = true
   }
+
 }

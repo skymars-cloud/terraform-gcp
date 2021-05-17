@@ -8,10 +8,27 @@ module "compute_instance" {
   primary_zone            = var.primary_zone
   service_account_id      = var.service_account_id
   create_compute_instance = var.create_compute_instance
+  region                  = var.primary_region
+  subnet                  = var.primary_subnet
+  vpc_name                = var.vpc_name
+  depends_on              = [module.network]
 }
 
 module "iam" {
   source = "./modules/iam"
+}
+module "network" {
+  source           = "./modules/network"
+  folder_name      = "palani"
+  org_id           = var.org_id
+  primary_region   = var.primary_region
+  primary_subnet   = var.primary_subnet
+  primary_zone     = var.primary_zone
+  project_id       = var.project_id_dev
+  project_name     = var.project_id_dev
+  secondary_subnet = var.secondary_subnet
+  tertiary_subnet  = var.tertiary_subnet
+  vpc_name         = var.vpc_name
 }
 
 
@@ -29,10 +46,11 @@ module "iam" {
 //}
 
 // create palaniram/prj-prod-palani-ram
-module "project" {
-  source       = "./modules/project"
-  folder_name  = "palaniram"
-  org_id       = var.org_id
-  project_id   = var.project_id_prod
-  project_name = var.project_id_prod
-}
+//module "project" {
+//  source       = "./modules/project"
+//  folder_name  = "palaniram"
+//  org_id       = var.org_id
+//  project_id   = var.project_id_prod
+//  project_name = var.project_id_prod
+//
+//}
