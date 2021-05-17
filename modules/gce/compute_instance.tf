@@ -8,6 +8,7 @@ data "google_compute_image" "my_image" {
 
 resource "google_compute_instance" "default" {
   count        = var.create_compute_instance ? 1 : 0
+  project      = var.project_id
   name         = var.name
   machine_type = var.machine_type
   zone         = var.primary_zone
@@ -16,7 +17,7 @@ resource "google_compute_instance" "default" {
 
   boot_disk {
     initialize_params {
-      image = "centos-8-v20210420"
+      image = "centos-8-v20210512"
       type  = "pd-standard"
       size  = 20
     }
@@ -41,5 +42,9 @@ resource "google_compute_instance" "default" {
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
     email  = data.google_service_account.owner.email
     scopes = ["cloud-platform"]
+  }
+  shielded_instance_config {
+    enable_integrity_monitoring = false
+    enable_vtpm                 = false
   }
 }

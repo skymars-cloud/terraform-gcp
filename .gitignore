@@ -269,6 +269,7 @@ FakesAssemblies/
 **/*.iml
 **/.idea/*
 .idea/*
+.vscode/*
 
 # ALMaaS VS End
 
@@ -279,6 +280,8 @@ FakesAssemblies/
 *.tfstate
 *.tfstate.backup*
 .terraform*
+*.tfplan
+*.json
 
 #Certificate files
 privateKey.pem

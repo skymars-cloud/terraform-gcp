@@ -22,4 +22,6 @@ variable "create_compute_instance" {
   type = bool
 }
 
-
+variable "project_id" {
+  type = string
+}
