@@ -28,6 +28,16 @@ module "subnets" {
       subnet_flow_logs_interval = "INTERVAL_10_MIN"
       subnet_flow_logs_sampling = 0.7
       subnet_flow_logs_metadata = "INCLUDE_ALL_METADATA"
+    },
+    {
+      subnet_name   = "serverless-vpc-sbt-10-100-1-0" // 12 usable ips (16 - 4 )
+      subnet_ip     = "10.100.1.0/28"
+      subnet_region = var.primary_region
+    },
+    {
+      subnet_name   = "serverless-vpc-sbt-10-100-1-16" // 12 usable ips (16 - 4 )
+      subnet_ip     = "10.100.1.16/28"
+      subnet_region = var.primary_region
     }
   ]
 
