@@ -42,17 +42,21 @@ module "subnets" {
   ]
 
   secondary_ranges = {
-    subnet-01 = [
+    primary-dmz-subnet = [
       {
-        range_name    = "primary-dmz-subnet-secip"
+        range_name    = "primary-dmz-subnet-secip-1"
         ip_cidr_range = "192.168.10.0/24"
+      },
+      {
+        range_name    = "primary-dmz-subnet-secip-2"
+        ip_cidr_range = "192.168.20.0/24"
       }
     ]
 
-    subnet-02 = [
+    secondary-dmz-subnet = [
       {
         range_name    = "secondary-dmz-subnet-secip"
-        ip_cidr_range = "192.168.10.0/24"
+        ip_cidr_range = "192.168.30.0/24"
       }
     ]
   }

@@ -6,7 +6,8 @@ project_id_dev  = "prj-dev-palani-ram"
 project_id_qa   = "prj-qa-palani-ram"
 project_id_prod = "prj-prod-palani-ram"
 
-service_account_id = "srv-acct-admin"
+service_account_id    = "srv-acct-admin"
+service_account_email = "srv-acct-admin@prj-dev-palani-ram.iam.gserviceaccount.com"
 
 environment    = "dev"
 primary_region = "us-central1"

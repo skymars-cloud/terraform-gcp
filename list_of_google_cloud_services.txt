@@ -7,6 +7,11 @@ comamnds used to takeout only the service names:
 cat list.txt | awk  'BEGIN { FS = "/" } ; { print $3 }' > list-2.txt
 awk '!seen[$0]++' list-2.txt > sorted_list.txt
 
+to list all enabled apis/services:
+gcloud services list --enabled
+
+to list all available apis/services:
+gcloud services list --available
 -----
 abusiveexperiencereport.googleapis.com
 acceleratedmobilepageurl.googleapis.com
@@ -35,6 +40,7 @@ area120tables.googleapis.com
 artifactregistry.googleapis.com
 assuredworkloads.googleapis.com
 baremetalsolution.googleapis.com
+
 bigquery.googleapis.com
 bigqueryconnection.googleapis.com
 bigquerydatatransfer.googleapis.com
@@ -57,7 +63,9 @@ cloudbuild.googleapis.com
 cloudchannel.googleapis.com
 clouddebugger.googleapis.com
 clouderrorreporting.googleapis.com
+
 cloudfunctions.googleapis.com
+
 cloudidentity.googleapis.com
 cloudiot.googleapis.com
 cloudkms.googleapis.com
@@ -69,7 +77,9 @@ cloudshell.googleapis.com
 cloudtasks.googleapis.com
 cloudtrace.googleapis.com
 composer.googleapis.com
+
 container.googleapis.com
+
 containeranalysis.googleapis.com
 shoppingcontent.googleapis.com
 customsearch.googleapis.com
@@ -114,14 +124,18 @@ gamesconfiguration.googleapis.com
 gamesmanagement.googleapis.com
 gameservices.googleapis.com
 genomics.googleapis.com
-gkehub.googleapis.com
+
+gkehub.googleapis.com -- https://cloud.google.com/anthos/multicluster-management/connect/overview
+
 gmail.googleapis.com
 gmailpostmastertools.googleapis.com
 groupsmigration.googleapis.com
 groupssettings.googleapis.com
 healthcare.googleapis.com
 homegraph.googleapis.com
+
 iam.googleapis.com
+
 iamcredentials.googleapis.com
 iap.googleapis.com
 identitytoolkit.googleapis.com
@@ -133,7 +147,9 @@ libraryagent.googleapis.com
 licensing.googleapis.com
 lifesciences.googleapis.com
 localservices.googleapis.com
+
 logging.googleapis.com
+
 managedidentities.googleapis.com
 manufacturers.googleapis.com
 memcache.googleapis.com
@@ -143,8 +159,10 @@ monitoring.googleapis.com
 mybusinessaccountmanagement.googleapis.com
 mybusinesslodging.googleapis.com
 mybusinessplaceactions.googleapis.com
+
 networkconnectivity.googleapis.com
 networkmanagement.googleapis.com
+
 notebooks.googleapis.com
 ondemandscanning.googleapis.com
 orgpolicy.googleapis.com

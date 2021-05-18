@@ -35,6 +35,9 @@ variable "created_by" {
 variable "service_account_id" {
   type = string
 }
+variable "service_account_email" {
+  type = string
+}
 
 variable "create_compute_instance" {
   type = bool
