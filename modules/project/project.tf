@@ -47,6 +47,7 @@
 //  name       = var.project_name
 //  project_id = var.project_id
 //  folder_id  = google_folder.folder.name
+//auto_create_network = false
 //}
 //
 //// enable audit logging at project level
