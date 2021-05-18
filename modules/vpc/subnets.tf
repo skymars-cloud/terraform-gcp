@@ -4,7 +4,7 @@ module "subnets" {
   source       = "terraform-google-modules/network/google//modules/subnets"
   version      = "3.2.2"
   project_id   = var.project_id
-  network_name = module.vpc.network_name
+  network_name = module.network.network_name
 
   subnets = [
     {
@@ -46,5 +46,5 @@ module "subnets" {
       }
     ]
   }
-  depends_on = [module.vpc]
+  depends_on = [module.network]
 }

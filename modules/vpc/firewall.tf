@@ -26,5 +26,5 @@ module "firewall_rules" {
     }
   ]
 
-  depends_on = [module.vpc]
+  depends_on = [module.network]
 }

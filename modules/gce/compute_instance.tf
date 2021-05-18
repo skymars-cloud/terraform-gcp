@@ -54,5 +54,4 @@ resource "google_compute_instance" "vm" {
     enable_integrity_monitoring = true
     enable_vtpm                 = true
   }
-
 }

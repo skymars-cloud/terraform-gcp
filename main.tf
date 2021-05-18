@@ -1,3 +1,20 @@
+module "vpc" {
+  source           = "./modules/vpc"
+  folder_name      = "palani"
+  org_id           = var.org_id
+  primary_region   = var.primary_region
+  primary_subnet   = var.primary_subnet
+  primary_zone     = var.primary_zone
+  project_id       = var.project_id_dev
+  project_name     = var.project_id_dev
+  secondary_subnet = var.secondary_subnet
+  tertiary_subnet  = var.tertiary_subnet
+  vpc_name         = var.vpc_name
+}
+
+module "iam" {
+  source = "./modules/iam"
+}
 
 module "compute_instance" {
   source                  = "./modules/gce"
@@ -11,25 +28,10 @@ module "compute_instance" {
   region                  = var.primary_region
   subnet                  = var.primary_subnet
   vpc_name                = var.vpc_name
-  depends_on              = [module.network]
+  depends_on              = [module.vpc]
 }
 
-module "iam" {
-  source = "./modules/iam"
-}
-module "network" {
-  source           = "./modules/network"
-  folder_name      = "palani"
-  org_id           = var.org_id
-  primary_region   = var.primary_region
-  primary_subnet   = var.primary_subnet
-  primary_zone     = var.primary_zone
-  project_id       = var.project_id_dev
-  project_name     = var.project_id_dev
-  secondary_subnet = var.secondary_subnet
-  tertiary_subnet  = var.tertiary_subnet
-  vpc_name         = var.vpc_name
-}
+
 
 
 //
