@@ -15,27 +15,27 @@ module "vpc" {
 module "iam" {
   source = "./modules/iam"
 }
-
-module "gke" {
-  source         = "./modules/gke"
-  region         = var.primary_region
-  primary_subnet = var.primary_subnet
-  project_id     = var.project_id_dev
-  project_name   = var.project_id_dev
-  vpc_name       = var.vpc_name
-  //  //  depends_on     = [module.vpc] // Providers cannot be configured within modules using count, for_each or depends_on.
-  service_account_id = var.service_account_id
-  //  compute_engine_service_account = var.service_account_id
-  //  ip_range_pods                  = ""
-  //  ip_range_services              = ""
-  //  network                        = ""
-  //  project_id                     = ""
-  //  region                         = ""
-  //  subnetwork                     = ""
-  secondary_subnet      = var.secondary_subnet
-  tertiary_subnet       = var.tertiary_subnet
-  service_account_email = var.service_account_email
-}
+// commented out - pal - work in progress
+//module "gke" {
+//  source         = "./modules/gke"
+//  region         = var.primary_region
+//  primary_subnet = var.primary_subnet
+//  project_id     = var.project_id_dev
+//  project_name   = var.project_id_dev
+//  vpc_name       = var.vpc_name
+//  //  //  depends_on     = [module.vpc] // Providers cannot be configured within modules using count, for_each or depends_on.
+//  service_account_id = var.service_account_id
+//  //  compute_engine_service_account = var.service_account_id
+//  //  ip_range_pods                  = ""
+//  //  ip_range_services              = ""
+//  //  network                        = ""
+//  //  project_id                     = ""
+//  //  region                         = ""
+//  //  subnetwork                     = ""
+//  secondary_subnet      = var.secondary_subnet
+//  tertiary_subnet       = var.tertiary_subnet
+//  service_account_email = var.service_account_email
+//}
 
 module "compute_instance" {
   source                  = "./modules/gce"
