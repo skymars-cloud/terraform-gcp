@@ -2,6 +2,9 @@ data "google_service_account" "owner" {
   account_id = var.service_account_id
 }
 
+data "google_service_account" "default" {
+  account_id = var.service_account_id
+}
 data "google_compute_image" "debian" {
   family  = "debian-9"
   project = "debian-cloud"
@@ -47,7 +50,7 @@ resource "google_compute_instance" "vm" {
 
   service_account {
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-    email  = data.google_service_account.owner.email
+    email  = data.google_service_account.default.email
     scopes = ["cloud-platform"]
   }
   shielded_instance_config {

@@ -6,8 +6,13 @@ project_id_dev  = "prj-dev-palani-ram"
 project_id_qa   = "prj-qa-palani-ram"
 project_id_prod = "prj-prod-palani-ram"
 
-service_account_id    = "srv-acct-admin"
-service_account_email = "srv-acct-admin@prj-dev-palani-ram.iam.gserviceaccount.com"
+//service_account_id    = "srv-acct-admin"
+//service_account_email = "srv-acct-admin@prj-dev-palani-ram.iam.gserviceaccount.com"
+
+service_account_id    = "106468915766098631994"
+service_account_email = "927667932961-compute@developer.gserviceaccount.com"
+//default_service_account_email = "927667932961-compute@developer.gserviceaccount.com"
+
 
 environment    = "dev"
 primary_region = "us-central1"
