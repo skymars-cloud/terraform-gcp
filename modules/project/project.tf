@@ -57,8 +57,8 @@ resource "google_project" "project" {
 }
 
 resource "google_compute_project_metadata_item" "default" {
-  key   = "enable-oslogin"
-  value = "TRUE"
+  key     = "enable-oslogin"
+  value   = "TRUE"
   project = var.project_id
 }
 
