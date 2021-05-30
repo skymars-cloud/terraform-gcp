@@ -1,8 +1,3 @@
-//resource "google_service_account" "myaccount" {
-//  account_id   = var.account_id
-//  display_name = "My Service Account"
-//  project      = var.project_id
-//}
 
 data "google_service_account" "service_account" {
   account_id = "srv-acct-admin@prj-dev-palani-ram.iam.gserviceaccount.com"

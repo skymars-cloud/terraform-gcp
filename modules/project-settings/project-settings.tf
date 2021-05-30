@@ -1,0 +1,46 @@
+
+// enable audit logging at project level
+resource "google_project_iam_audit_config" "all_services" {
+  project = var.project_id
+  service = "allServices"
+  audit_log_config {
+    log_type = "ADMIN_READ"
+  }
+  audit_log_config {
+    log_type = "DATA_WRITE"
+  }
+  audit_log_config {
+    log_type = "DATA_READ"
+  }
+}
+
+resource "google_compute_project_metadata_item" "oslogin" {
+  key     = "enable-oslogin"
+  value   = "TRUE"
+  project = var.project_id
+}
+
+
+
+//
+//resource "google_project_iam_binding" "project" {
+//  project = google_project.project.project_id
+//  role    = "roles/owner"
+//
+//  members = [
+//    "user:palani.ram@googlecloud.corp-partner.google.com"
+//  ]
+//}
+//
+//resource "google_project_iam_member" "project" {
+//  project = data.google_project.project.project_id
+//  role    = "roles/owner"
+//  member  = "user:palani.ram@googlecloud.corp-partner.google.com"
+//
+//  condition {
+//    title       = "expires_after_2022_12_31"
+//    description = "Expiring at midnight of 2022-12-31"
+//    expression  = "request.time < timestamp(\"2023-01-01T00:00:00Z\")"
+//  }
+//}
+

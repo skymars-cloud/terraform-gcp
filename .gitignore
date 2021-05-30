@@ -283,6 +283,20 @@ FakesAssemblies/
 *.tfplan
 *.json
 
+.idea/**
+**terraform.tfstate**
+**/notes
+**.terraform/
+
+*.iml
+*.auto.tfvars
+
+# configuration file for init.sh
+/init.conf
+*.log
+**/tmp/**
+**/versions.json
+
 #Certificate files
 privateKey.pem
 certificateChain.pem

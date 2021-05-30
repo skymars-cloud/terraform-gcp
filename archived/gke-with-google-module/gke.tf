@@ -23,7 +23,7 @@ provider "kubernetes" {
 module "gke" {
   source     = "terraform-google-modules/kubernetes-engine/google"
   project_id = var.project_id
-  name       = "gke-test-1"
+  name       = "gke-test-cluster"
   region     = var.region
   zones      = ["us-central1-a", "us-central1-b", "us-central1-f"]
   network    = var.vpc_name
@@ -31,7 +31,8 @@ module "gke" {
   //  ip_range_pods     = data.google_compute_subnetwork.secondary_subnet.name
   ip_range_pods = "primary-dmz-subnet-secip-1"
   //  ip_range_services = data.google_compute_subnetwork.tertiary_subnet.name
-  ip_range_services = "primary-dmz-subnet-secip-2"
+  ip_range_services         = "primary-dmz-subnet-secip-2"
+  default_max_pods_per_node = 8 // Maximum pods per node must be at least 8 and at most 110
 
   http_load_balancing        = false
   horizontal_pod_autoscaling = true
@@ -43,9 +44,9 @@ module "gke" {
       machine_type    = "e2-medium"
       node_locations  = "us-central1-b,us-central1-c"
       min_count       = 1
-      max_count       = 100
+      max_count       = 10
       local_ssd_count = 0
-      disk_size_gb    = 100
+      disk_size_gb    = 20
       disk_type       = "pd-standard"
       image_type      = "COS"
       auto_repair     = true
@@ -53,7 +54,7 @@ module "gke" {
       //      service_account    = "project-service-account@${var.project_id}.iam.gserviceaccount.com"
       service_account    = var.service_account_email
       preemptible        = false
-      initial_node_count = 80
+      initial_node_count = 2
     },
   ]
 
@@ -94,19 +95,11 @@ module "gke" {
   }
 
   node_pools_tags = {
-    all = []
+    all = ["ingress-all", "egress-all"]
 
     default-node-pool = [
       "default-node-pool",
     ]
   }
+
 }
-//cluster creation worked. but node pool creation gives this error
-//│ Error: error creating NodePool: googleapi: Error 403:
-//│       (1) insufficient regional quota to satisfy request: resource "CPUS": request requires '320.0' and is short '251.0'. project has a quota of '72.0' with '69.0' available. View and manage quotas at https://console.cloud.google.com/iam-admin/quotas?usage=USED&project=prj-dev-palani-ram
-//│       (2) insufficient regional quota to satisfy request: resource "IN_USE_ADDRESSES": request requires '160.0' and is short '92.0'. project has a quota of '69.0' with '68.0' available. View and manage quotas at https://console.cloud.google.com/iam-admin/quotas?usage=USED&project=prj-dev-palani-ram., forbidden
-//│
-//│   with module.gke.module.gke.google_container_node_pool.pools["default-node-pool"],
-//│   on .terraform/modules/gke.gke/cluster.tf line 194, in resource "google_container_node_pool" "pools":
-//│  194: resource "google_container_node_pool" "pools" {
-//│

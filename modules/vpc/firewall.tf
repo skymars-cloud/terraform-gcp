@@ -28,3 +28,27 @@ module "firewall_rules" {
 
   depends_on = [module.network]
 }
+
+resource "google_compute_firewall" "allow_all_ingress" {
+  name    = "allow-all-ingress-firewall"
+  network = module.network.network_name
+  allow {
+    protocol = "tcp"
+    ports    = ["1-65535"]
+  }
+
+  source_tags = ["ingress-all"]
+  direction   = "INGRESS"
+}
+
+
+resource "google_compute_firewall" "allow_all_egress" {
+  name    = "allow-all-egress-firewall"
+  network = module.network.network_name
+  allow {
+    protocol = "tcp"
+    ports    = ["1-65535"]
+  }
+  target_tags = ["egress-all"]
+  direction   = "EGRESS"
+}

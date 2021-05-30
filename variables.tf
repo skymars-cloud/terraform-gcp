@@ -7,13 +7,17 @@ variable "org_id" {
   type = string
 }
 
+variable "folder_name_palani" {
+  type = string
+}
+variable "folder_id_palani" {
+  type = string
+}
+
 variable "project_id_dev" {
   type = string
 }
 variable "project_id_qa" {
-  type = string
-}
-variable "project_id_prod" {
   type = string
 }
 
@@ -42,6 +46,10 @@ variable "service_account_email" {
 variable "create_compute_instance" {
   type = bool
 }
+variable "enable_gke_module" {
+  type = bool
+}
+
 variable "vpc_name" {
   type = string
 }
