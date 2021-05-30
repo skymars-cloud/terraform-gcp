@@ -30,13 +30,13 @@ module "subnets" {
       subnet_flow_logs_metadata = "INCLUDE_ALL_METADATA"
     },
     {
-      subnet_name   = "serverless-vpc-sbt-10-100-1-0" // 12 usable ips (16 - 4 )
-      subnet_ip     = "10.100.1.0/28"
+      subnet_name   = "serverless-vpc-sbt-10-10-40-0" // 12 usable ips (16 - 4 )
+      subnet_ip     = "10.10.40.0/28"
       subnet_region = var.primary_region
     },
     {
-      subnet_name   = "serverless-vpc-sbt-10-100-1-16" // 12 usable ips (16 - 4 )
-      subnet_ip     = "10.100.1.16/28"
+      subnet_name   = "serverless-vpc-sbt-10-10-50-0" // 12 usable ips (16 - 4 )
+      subnet_ip     = "10.10.50.0/28"
       subnet_region = var.primary_region
     }
   ]
@@ -45,18 +45,18 @@ module "subnets" {
     primary-dmz-subnet = [
       {
         range_name    = "primary-dmz-subnet-secip-1"
-        ip_cidr_range = "192.168.10.0/24"
+        ip_cidr_range = "10.100.10.0/24"
       },
       {
         range_name    = "primary-dmz-subnet-secip-2"
-        ip_cidr_range = "192.168.20.0/24"
+        ip_cidr_range = "10.100.20.0/24"
       }
     ]
 
     secondary-dmz-subnet = [
       {
         range_name    = "secondary-dmz-subnet-secip"
-        ip_cidr_range = "192.168.30.0/24"
+        ip_cidr_range = "10.100.30.0/24"
       }
     ]
   }

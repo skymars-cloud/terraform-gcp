@@ -8,9 +8,4 @@ variable "project_name" {
 variable "project_id" {
   type = string
 }
-variable "folder_name" {
-  type = string
-}
-
-
 
