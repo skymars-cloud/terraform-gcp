@@ -1,4 +1,5 @@
-//
+// https://github.com/terraform-google-modules/terraform-google-kubernetes-engine/blob/master/docs/private_clusters.md
+
 //module "gke" {
 //  source                         = "./modules/gke"
 //  cluster_name_suffix            = "-pal"
