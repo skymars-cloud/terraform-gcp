@@ -1,4 +1,10 @@
 
+// enable google api services - this should be done first
+module "enable-google-api-services" {
+  source     = "./modules/services"
+  project_id = var.project_id_dev
+}
+
 module "vpc" {
   source           = "./modules/vpc"
   folder_name      = var.folder_name_palani

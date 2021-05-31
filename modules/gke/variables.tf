@@ -33,3 +33,13 @@ variable "compute_engine_service_account" {
 variable "enable_gke_module" {
   type = bool
 }
+variable "primary_subnet" {
+  type = string
+}
+variable "secondary_subnet" {
+  type = string
+}
+variable "tertiary_subnet" {
+  type = string
+}
+
