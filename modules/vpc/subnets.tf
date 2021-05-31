@@ -38,6 +38,11 @@ module "subnets" {
       subnet_name   = "serverless-vpc-sbt-10-10-50-0" // 12 usable ips (16 - 4 )
       subnet_ip     = "10.10.50.0/28"
       subnet_region = var.primary_region
+    },
+    {
+      subnet_name   = "kubernetes-master-sbt-10-10-60-0" // 12 usable ips (16 - 4 )
+      subnet_ip     = "10.10.60.0/28"
+      subnet_region = var.primary_region
     }
   ]
 
