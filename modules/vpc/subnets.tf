@@ -8,9 +8,10 @@ module "subnets" {
 
   subnets = [
     {
-      subnet_name   = var.primary_subnet
-      subnet_ip     = "10.10.10.0/24"
-      subnet_region = var.primary_region
+      subnet_name           = var.primary_subnet
+      subnet_ip             = "10.10.10.0/24"
+      subnet_region         = var.primary_region
+      subnet_private_access = true
     },
     {
       subnet_name           = var.secondary_subnet
@@ -24,25 +25,29 @@ module "subnets" {
       subnet_name               = var.tertiary_subnet
       subnet_ip                 = "10.10.30.0/24"
       subnet_region             = var.primary_region
+      subnet_private_access     = true
       subnet_flow_logs          = "true"
       subnet_flow_logs_interval = "INTERVAL_10_MIN"
       subnet_flow_logs_sampling = 0.7
       subnet_flow_logs_metadata = "INCLUDE_ALL_METADATA"
     },
     {
-      subnet_name   = "serverless-vpc-sbt-10-10-40-0" // 12 usable ips (16 - 4 )
-      subnet_ip     = "10.10.40.0/28"
-      subnet_region = var.primary_region
+      subnet_name           = "serverless-vpc-sbt-10-10-40-0" // 12 usable ips (16 - 4 )
+      subnet_ip             = "10.10.40.0/28"
+      subnet_region         = var.primary_region
+      subnet_private_access = true
     },
     {
-      subnet_name   = "serverless-vpc-sbt-10-10-50-0" // 12 usable ips (16 - 4 )
-      subnet_ip     = "10.10.50.0/28"
-      subnet_region = var.primary_region
+      subnet_name           = "serverless-vpc-sbt-10-10-50-0" // 12 usable ips (16 - 4 )
+      subnet_ip             = "10.10.50.0/28"
+      subnet_region         = var.primary_region
+      subnet_private_access = true
     },
     {
-      subnet_name   = "kubernetes-master-sbt-10-10-60-0" // 12 usable ips (16 - 4 )
-      subnet_ip     = "10.10.60.0/28"
-      subnet_region = var.primary_region
+      subnet_name           = "kubernetes-master-sbt-10-10-60-0" // 12 usable ips (16 - 4 )
+      subnet_ip             = "10.10.60.0/28"
+      subnet_region         = var.primary_region
+      subnet_private_access = true
     }
   ]
 
