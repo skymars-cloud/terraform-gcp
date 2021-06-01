@@ -41,7 +41,7 @@ module "gke" {
   network_policy          = true
   configure_ip_masq       = true
   enable_private_endpoint = false
-  master_ipv4_cidr_block  = "10.10.60.0/28"
+  master_ipv4_cidr_block  = "10.10.70.0/28"
   //  master_ipv4_cidr_block = "173.62.207.192/28"
   // end of pals additions
 

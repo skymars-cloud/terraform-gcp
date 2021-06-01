@@ -1,4 +1,6 @@
 // https://github.com/terraform-google-modules/terraform-google-kubernetes-engine/blob/master/docs/private_clusters.md
+// Error waiting for creating GKE NodePool: All cluster resources were brought up, but: only 0 nodes out of 3 have registered; cluster may be unhealthy.
+// enabling this gives above error while apply. it creates the nodes are also created but they are not joining the cluster. some networking issue.
 
 //module "gke" {
 //  source                         = "./modules/gke"
