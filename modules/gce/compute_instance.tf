@@ -42,7 +42,7 @@ resource "google_compute_instance" "vm" {
     name                   = var.name
     environment            = var.environment
     block-project-ssh-keys = true
-  }
+          }
 
   metadata_startup_script = "echo instance created through terraform > /readme.txt"
 

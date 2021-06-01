@@ -28,7 +28,6 @@ module "compute_instance" {
   depends_on              = [module.vpc]
 }
 
-// url to invoke the function https://us-central1-prj-dev-palani-ram.cloudfunctions.net/hello-world
 module "fn_hello" {
   source             = "./modules/function"
   project_id         = var.project_id_dev
@@ -38,13 +37,4 @@ module "fn_hello" {
   region             = var.primary_region
   source_code_folder = "./python"
   zip_file_name      = "hello-world.zip"
-}
-
-module "cis_bucket" {
-  source                = "./modules/gcs"
-  bucket_name           = "cis_pals_bkt"
-  bucket_prefix         = var.project_id_dev
-  project_id            = var.project_id_dev
-  service_account_email = var.service_account_email
-  region                = var.primary_region
 }
