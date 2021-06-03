@@ -1,10 +1,4 @@
 
-// enable google api services - this should be done first
-module "enable-google-api-services" {
-  source     = "./modules/services"
-  project_id = var.project_id_dev
-}
-
 module "vpc" {
   source           = "./modules/vpc"
   folder_name      = var.folder_name_palani
@@ -33,4 +27,14 @@ module "compute_instance" {
   vpc_name                = var.vpc_name
   depends_on              = [module.vpc]
 }
-
+//
+//module "fn_hello" {
+//  source             = "./modules/function"
+//  project_id         = var.project_id_dev
+//  bucket_name        = "bkt-pals-functions"
+//  description        = "pals-functions"
+//  function_name      = "hello-world"
+//  region             = var.primary_region
+//  source_code_folder = "./python"
+//  zip_file_name      = "hello-world.zip"
+//}
