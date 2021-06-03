@@ -28,6 +28,7 @@ module "compute_instance" {
   depends_on              = [module.vpc]
 }
 
+// url to invoke the function https://us-central1-prj-dev-palani-ram.cloudfunctions.net/hello-world
 module "fn_hello" {
   source             = "./modules/function"
   project_id         = var.project_id_dev
