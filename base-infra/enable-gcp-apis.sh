@@ -10,4 +10,5 @@ gcloud services enable containeranalysis.googleapis.com --async --project prj-de
 gcloud services enable iam.googleapis.com --async --project prj-dev-palani-ram
 gcloud services enable serviceusage.googleapis.com --async --project prj-dev-palani-ram
 gcloud services enable serviceconsumermanagement.googleapis.com --async --project prj-dev-palani-ram
+gcloud services enable cloudbuild.googleapis.com --async --project prj-dev-palani-ram               # needed for cloud function
 

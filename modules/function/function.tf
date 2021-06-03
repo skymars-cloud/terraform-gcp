@@ -11,15 +11,14 @@ data "archive_file" "function_zip" {
 }
 
 
-resource "google_storage_bucket" "function" {
-  name          = var.bucket_name
-  storage_class = "REGIONAL"
+resource "google_storage_bucket" "bkt_function" {
+  name = var.bucket_name
 }
 
 resource "google_storage_bucket_object" "pager_duty_func" {
   name   = var.zip_file_name
-  bucket = google_storage_bucket.function.name
-  source = local.zip_file_path
+  bucket = google_storage_bucket.bkt_function.name
+  source = "${local.zip_file_path}/${var.zip_file_name}"
 }
 
 resource "google_cloudfunctions_function" "function" {
@@ -29,7 +28,7 @@ resource "google_cloudfunctions_function" "function" {
   description           = var.description
   runtime               = "python39" // "nodejs14"
   available_memory_mb   = 128
-  source_archive_bucket = google_storage_bucket.function.name
+  source_archive_bucket = google_storage_bucket.bkt_function.name
   source_archive_object = google_storage_bucket_object.pager_duty_func.name
   trigger_http          = true
   entry_point           = "helloGET"
