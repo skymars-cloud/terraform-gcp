@@ -8,10 +8,25 @@ cat list.txt | awk  'BEGIN { FS = "/" } ; { print $3 }' > list-2.txt
 awk '!seen[$0]++' list-2.txt > sorted_list.txt
 
 to list all enabled apis/services:
-gcloud services list --enabled
+gcloud services list --enabled --project prj-dev-palani-ram
 
 to list all available apis/services:
-gcloud services list --available
+gcloud services list --available --project prj-dev-palani-ram
+
+gcloud services list --enabled --project prj-dev-palani-ram
+
+gcloud services enable cloudfunctions.googleapis.com --async --project prj-dev-palani-ram
+gcloud services enable gkehub.googleapis.com --async --project prj-dev-palani-ram
+gcloud services enable vpcaccess.googleapis.com --async --project prj-dev-palani-ram
+gcloud services enable logging.googleapis.com --async --project prj-dev-palani-ram
+gcloud services enable container.googleapis.com --async --project prj-dev-palani-ram
+gcloud services enable compute.googleapis.com --async --project prj-dev-palani-ram
+gcloud services enable containeranalysis.googleapis.com --async --project prj-dev-palani-ram
+gcloud services enable iam.googleapis.com --async --project prj-dev-palani-ram
+gcloud services enable serviceusage.googleapis.com --async --project prj-dev-palani-ram
+
+ --async
+
 -----
 abusiveexperiencereport.googleapis.com
 acceleratedmobilepageurl.googleapis.com

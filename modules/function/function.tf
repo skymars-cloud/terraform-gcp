@@ -19,7 +19,7 @@ resource "google_storage_bucket" "function" {
 resource "google_storage_bucket_object" "pager_duty_func" {
   name   = var.zip_file_name
   bucket = google_storage_bucket.function.name
-  source = var.zip_file_path
+  source = local.zip_file_path
 }
 
 resource "google_cloudfunctions_function" "function" {

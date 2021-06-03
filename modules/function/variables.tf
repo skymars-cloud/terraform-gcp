@@ -14,9 +14,6 @@ variable "description" {
 variable "bucket_name" {
   type = string
 }
-variable "zip_file_path" {
-  type = string
-}
 variable "zip_file_name" {
   type = string
 }
