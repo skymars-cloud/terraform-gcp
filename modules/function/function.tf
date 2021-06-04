@@ -1,7 +1,8 @@
 // this is ncode from scratch. google cloud module can be used instead
 // https://github.com/terraform-google-modules/terraform-google-event-function
 locals {
-  zip_file_path = "./.function_deployment "
+  //zip_file_path = "./.function_deployment "
+  zip_file_path = "E:/Palani/Code/terraform-gcp/.function_deployment"
 }
 
 data "archive_file" "function_zip" {

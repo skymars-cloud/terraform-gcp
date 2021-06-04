@@ -30,7 +30,7 @@ resource "google_compute_instance" "vm" {
       size  = 20
     }
   }
-
+  can_ip_forward = true
   network_interface {
     subnetwork = data.google_compute_subnetwork.subnetwork.name
     access_config {
@@ -42,6 +42,8 @@ resource "google_compute_instance" "vm" {
     name                   = var.name
     environment            = var.environment
     block-project-ssh-keys = true
+    //enable-oslogin = false
+    //serial-port-enable = true
   }
 
   metadata_startup_script = "echo instance created through terraform > /readme.txt"
