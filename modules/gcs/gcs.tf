@@ -1,7 +1,6 @@
 
 module "bucket" {
-  source = "git::https://github.com/terraform-google-modules/terraform-google-cloud-storage.git//modules/simple_bucket?ref=master"
-
+  source     = "git::https://github.com/terraform-google-modules/terraform-google-cloud-storage.git//modules/simple_bucket?ref=master"
   name       = var.bucket_name
   project_id = var.project_id
   location   = var.region
