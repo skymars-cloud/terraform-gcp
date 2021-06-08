@@ -58,6 +58,13 @@ variable "enable_gke_module" {
 variable "enable_postgresql_module" {
   type = bool
 }
+variable "enable_mysql_module" {
+  type = bool
+}
+variable "enable_mssql_module" {
+  type = bool
+}
+
 variable "vpc_name" {
   type = string
 }

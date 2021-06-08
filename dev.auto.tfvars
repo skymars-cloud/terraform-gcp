@@ -27,4 +27,6 @@ tertiary_subnet  = "tertiary-dmz-subnet"
 create_compute_instance  = true
 enable_gke_module        = true
 enable_postgresql_module = true
+enable_mysql_module      = true
+enable_mssql_module      = true
 
