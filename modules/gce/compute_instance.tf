@@ -30,7 +30,7 @@ resource "google_compute_instance" "vm" {
       size  = 20
     }
   }
-  can_ip_forward = true
+  //can_ip_forward = true
   network_interface {
     subnetwork = data.google_compute_subnetwork.subnetwork.name
     access_config {
