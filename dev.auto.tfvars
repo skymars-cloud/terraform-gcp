@@ -14,7 +14,8 @@ environment    = "dev"
 primary_region = "us-central1"
 primary_zone   = "us-central1-f"
 
-zones = ["us-central1-a", "us-central1-b", "us-central1-f"]
+zones        = ["us-central1-a", "us-central1-b", "us-central1-f"]
+zones_string = "us-central1-a,us-central1-b,us-central1-f"
 
 created_by = "Palani_Ram"
 

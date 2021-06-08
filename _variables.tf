@@ -35,6 +35,10 @@ variable "primary_zone" {
 variable "zones" {
   type = list(string)
 }
+variable "zones_string" {
+  type = string
+}
+
 variable "created_by" {
   type = string
 }

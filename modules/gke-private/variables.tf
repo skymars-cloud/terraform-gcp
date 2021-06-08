@@ -6,9 +6,6 @@ variable "project_id" {
   description = "The project ID to host the cluster in"
 }
 
-variable "cluster_name_suffix" {
-  description = "A suffix to append to the default cluster name"
-}
 
 variable "region" {
   description = "The region to host the cluster in"
@@ -26,25 +23,15 @@ variable "ip_range_pods" {
   description = "The secondary ip range to use for pods"
 }
 
-variable "ip_range_services" {
-  description = "The secondary ip range to use for services"
-}
-
 variable "compute_engine_service_account" {
   description = "Service account to associate to the nodes in the cluster"
 }
-variable "enable_gke_module" {
-  type = bool
-}
-variable "primary_subnet" {
-  type = string
-}
-variable "secondary_subnet" {
-  type = string
-}
-variable "tertiary_subnet" {
-  type = string
+variable "ip_range_services" {
+  description = "The secondary ip range to use for services"
 }
 variable "zones" {
   type = list(string)
+}
+variable "zones_string" {
+  type = string
 }
