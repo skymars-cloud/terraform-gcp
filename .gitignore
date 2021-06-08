@@ -304,5 +304,6 @@ trustedCertificates.pem
 
 #python cache directory
 __pycache__
-/venv/
+venv/*
 /modules/function/
+**/venv/
