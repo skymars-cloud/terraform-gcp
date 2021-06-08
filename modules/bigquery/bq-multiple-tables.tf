@@ -10,7 +10,7 @@ module "bigquery" {
   tables = [
     {
       table_id = "foo",
-      schema   = file("sample_bq_schema_json.txt"),
+      schema   = file("${path.module}/sample_bq_schema_json.txt"),
       time_partitioning = {
         type                     = "DAY",
         field                    = null,
@@ -23,12 +23,12 @@ module "bigquery" {
       labels = {
         env      = "dev"
         billable = "true"
-        owner    = "Palani"
+        owner    = "joedoe"
       },
     },
     {
       table_id          = "bar",
-      schema            = file("sample_bq_schema_json.txt"),
+      schema            = file("${path.module}/sample_bq_schema_json.txt"),
       time_partitioning = null,
       range_partitioning = {
         field = "visitNumber",
@@ -43,12 +43,13 @@ module "bigquery" {
       labels = {
         env      = "devops"
         billable = "true"
-        owner    = "Palani"
+        owner    = "joedoe"
       },
     }
   ]
   external_tables = [
     {
+      scopes                = ["cloud-platform", "https://www.googleapis.com/auth/drive"]
       table_id              = "csv_example"
       autodetect            = true
       compression           = null
@@ -60,7 +61,7 @@ module "bigquery" {
       labels = {
         env      = "devops"
         billable = "true"
-        owner    = "Palani"
+        owner    = "joedoe"
       }
       # DO NOT CHANGE - this is a publicly available file provided by Google
       # see here for reference: https://github.com/GoogleCloudPlatform/cloud-foundation-toolkit/pull/872
@@ -88,7 +89,7 @@ module "bigquery" {
       labels = {
         env      = "devops"
         billable = "true"
-        owner    = "Palani"
+        owner    = "joedoe"
       }
       # DO NOT CHANGE - these are publicly available files provided by Google
       # see here for reference: https://github.com/GoogleCloudPlatform/cloud-foundation-toolkit/pull/872
@@ -105,6 +106,7 @@ module "bigquery" {
       google_sheets_options = null
     },
     {
+      scopes                = ["cloud-platform", "https://www.googleapis.com/auth/drive"]
       table_id              = "google_sheets_example"
       autodetect            = true
       compression           = null
@@ -116,7 +118,7 @@ module "bigquery" {
       labels = {
         env      = "devops"
         billable = "true"
-        owner    = "Palani"
+        owner    = "joedoe"
       }
       # DO NOT CHANGE - this is a publicly available Google Sheet provided by Google
       # see here for reference: https://github.com/GoogleCloudPlatform/cloud-foundation-toolkit/pull/872

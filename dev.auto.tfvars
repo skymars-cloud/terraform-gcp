@@ -29,4 +29,5 @@ enable_gke_module        = true
 enable_postgresql_module = true
 enable_mysql_module      = true
 enable_mssql_module      = true
+enable_bq_module         = false // tf apply not tested completely. tf registry became down by the time.
 

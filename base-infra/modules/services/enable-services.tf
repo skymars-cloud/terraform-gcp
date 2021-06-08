@@ -20,7 +20,8 @@ module "project-services" {
     "cloudfunctions.googleapis.com",
     "logging.googleapis.com",
     "cloudresourcemanager.googleapis.com",
-    "cloudbuild.googleapis.com" //  Cloud Build API - Continuously build, test, and deploy.
+    "cloudbuild.googleapis.com", //  Cloud Build API - Continuously build, test, and deploy.
+    "cloudkms.googleapis.com"
 
   ]
 }
