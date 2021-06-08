@@ -55,7 +55,9 @@ variable "create_compute_instance" {
 variable "enable_gke_module" {
   type = bool
 }
-
+variable "enable_postgresql_module" {
+  type = bool
+}
 variable "vpc_name" {
   type = string
 }

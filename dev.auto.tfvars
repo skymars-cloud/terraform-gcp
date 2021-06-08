@@ -24,7 +24,7 @@ primary_subnet   = "primary-dmz-subnet"
 secondary_subnet = "secondary-dmz-subnet"
 tertiary_subnet  = "tertiary-dmz-subnet"
 
-create_compute_instance = true
-
-enable_gke_module = true
+create_compute_instance  = true
+enable_gke_module        = true
+enable_postgresql_module = true
 
