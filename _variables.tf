@@ -64,7 +64,9 @@ variable "enable_mysql_module" {
 variable "enable_mssql_module" {
   type = bool
 }
-
+variable "enable_bq_module" {
+  type = bool
+}
 variable "vpc_name" {
   type = string
 }

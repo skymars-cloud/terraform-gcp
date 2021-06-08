@@ -15,22 +15,17 @@ variable "project_id" {
 
 variable "dataset_labels" {
   description = "A mapping of labels to assign to the table."
-  type = map(object({
-    env      = string
-    billable = bool
-    owner    = string
-  }))
+  type        = map(string)
   default = {
     env      = "dev"
-    billable = true
-    owner    = "Palani"
+    billable = "true"
+    owner    = "joedoe"
   }
 }
 
 variable "kms_key" {
   description = "The KMS key to use to encrypt data by default"
   type        = string
-  default     = null
 }
 
 
