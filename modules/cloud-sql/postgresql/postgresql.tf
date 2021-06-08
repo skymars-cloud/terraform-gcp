@@ -11,9 +11,9 @@
 //  version = "~> 2.2"
 //}
 
-data "google_compute_subnetwork" "primary_subnet" {
-  name   = var.primary_subnet
-  region = var.primary_region
+data "google_compute_subnetwork" "subnet" {
+  name   = var.subnet
+  region = var.region
 }
 
 locals {
@@ -24,20 +24,20 @@ locals {
     authorized_networks = [
       {
         //        name  = "${var.project_id}-cidr"
-        name  = var.primary_subnet
+        name  = "public"
         value = var.pg_ha_external_ip_range
       }
     ]
   }
 }
 
-module "pg" {
+module "postgresql" {
   source               = "git::https://github.com/terraform-google-modules/terraform-google-sql-db.git//modules/postgresql?ref=master"
   name                 = var.pg_ha_name
   random_instance_name = true
   project_id           = var.project_id
-  database_version     = "POSTGRES_9_6"
-  region               = var.primary_region
+  database_version     = "POSTGRES_13"
+  region               = var.region
 
   // Master configurations
   tier                            = "db-custom-2-13312"
@@ -62,7 +62,7 @@ module "pg" {
     authorized_networks = [
       {
         //        name  = "${var.project_id}-cidr"
-        name = var.primary_subnet
+        name = var.subnet
         //        value = var.pg_ha_external_ip_range
         value = "0.0.0.0/0"
       }

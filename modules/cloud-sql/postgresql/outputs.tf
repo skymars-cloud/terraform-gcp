@@ -4,7 +4,7 @@ output "project_id" {
 
 output "name" {
   description = "The name for Cloud SQL instance"
-  value       = module.pg.instance_name
+  value       = module.postgresql.instance_name
 }
 
 output "authorized_network" {
@@ -12,9 +12,9 @@ output "authorized_network" {
 }
 
 output "replicas" {
-  value = module.pg.replicas
+  value = module.postgresql.replicas
 }
 
 output "instances" {
-  value = module.pg.instances
+  value = module.postgresql.instances
 }

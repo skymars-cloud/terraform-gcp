@@ -12,11 +12,10 @@ variable "pg_ha_name" {
 variable "pg_ha_external_ip_range" {
   type        = string
   description = "The ip range to allow connecting from/to Cloud SQL"
-  default     = "192.10.10.10/32"
 }
-variable "primary_region" {
+variable "region" {
   type = string
 }
-variable "primary_subnet" {
+variable "subnet" {
   type = string
 }
