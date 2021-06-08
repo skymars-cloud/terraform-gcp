@@ -13,7 +13,11 @@ service_account_email = "srv-acct-admin@prj-dev-palani-ram.iam.gserviceaccount.c
 environment    = "dev"
 primary_region = "us-central1"
 primary_zone   = "us-central1-f"
-created_by     = "Palani_Ram"
+
+zones        = ["us-central1-a", "us-central1-b", "us-central1-f"]
+zones_string = "us-central1-a,us-central1-b,us-central1-f"
+
+created_by = "Palani_Ram"
 
 vpc_name         = "primary-vpc"
 primary_subnet   = "primary-dmz-subnet"

@@ -36,9 +36,15 @@ resource "google_compute_firewall" "allow_all_ingress" {
     protocol = "tcp"
     ports    = ["1-65535"]
   }
-
-  source_tags = ["ingress-all"]
-  direction   = "INGRESS"
+  allow {
+    protocol = "udp"
+    ports    = ["1-65535"]
+  }
+  //         gke-nc-dev-cluster-ue1 gke-nc-dev-cluster-ue1-default-pool 
+  //  source_tags   = ["ingress-all", "gke-nc-dev-cluster-ue1", "gke-nc-dev-cluster-ue1-default-pool"]
+  source_ranges = ["0.0.0.0/0"] // generally provide master cidr range here
+  direction     = "INGRESS"
+  target_tags   = []
 }
 
 
@@ -49,6 +55,10 @@ resource "google_compute_firewall" "allow_all_egress" {
     protocol = "tcp"
     ports    = ["1-65535"]
   }
-  target_tags = ["egress-all"]
+  allow {
+    protocol = "udp"
+    ports    = ["1-65535"]
+  }
+  target_tags = ["egress-all", "gke-nc-dev-cluster-ue1", "gke-nc-dev-cluster-ue1-default-pool"]
   direction   = "EGRESS"
 }
