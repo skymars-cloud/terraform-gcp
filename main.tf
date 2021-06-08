@@ -48,3 +48,9 @@ module "cis_bucket" {
   service_account_email = var.service_account_email
   region                = var.primary_region
 }
+module "kms_key" {
+  source     = "./modules/kms"
+  keyring    = "kms-keyring-dev"
+  project_id = var.project_id_dev
+  keys       = ["kms-key-dev"]
+}
