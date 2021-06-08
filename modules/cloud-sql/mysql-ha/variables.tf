@@ -3,19 +3,19 @@ variable "project_id" {
   description = "The project to run tests against"
 }
 
-variable "pg_ha_name" {
+variable "mysql_ha_name" {
   type        = string
   description = "The name for Cloud SQL instance"
-  default     = "tf-pg-ha"
+  default     = "tf-mysql-ha"
 }
 
-variable "pg_ha_external_ip_range" {
+variable "mysql_ha_external_ip_range" {
   type        = string
   description = "The ip range to allow connecting from/to Cloud SQL"
 }
 variable "region" {
   type = string
 }
-variable "subnet" {
+variable "database_version" {
   type = string
 }

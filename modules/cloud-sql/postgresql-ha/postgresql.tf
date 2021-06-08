@@ -1,15 +1,3 @@
-//
-//provider "google" {
-//  version = "~> 3.22"
-//}
-//
-//provider "null" {
-//  version = "~> 2.1"
-//}
-//
-//provider "random" {
-//  version = "~> 2.2"
-//}
 
 data "google_compute_subnetwork" "subnet" {
   name   = var.subnet
@@ -23,8 +11,7 @@ locals {
     private_network = null
     authorized_networks = [
       {
-        //        name  = "${var.project_id}-cidr"
-        name  = "public"
+        name  = "public-cidr"
         value = var.pg_ha_external_ip_range
       }
     ]
@@ -36,7 +23,7 @@ module "postgresql" {
   name                 = var.pg_ha_name
   random_instance_name = true
   project_id           = var.project_id
-  database_version     = "POSTGRES_13"
+  database_version     = var.database_version
   region               = var.region
 
   // Master configurations
@@ -61,9 +48,7 @@ module "postgresql" {
     private_network = null
     authorized_networks = [
       {
-        //        name  = "${var.project_id}-cidr"
-        name = var.subnet
-        //        value = var.pg_ha_external_ip_range
+        name  = "public-cidr"
         value = "0.0.0.0/0"
       }
     ]
