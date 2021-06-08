@@ -1,10 +1,11 @@
-
 module "bucket" {
   source             = "git::https://github.com/terraform-google-modules/terraform-google-cloud-storage.git//modules/simple_bucket?ref=master"
   name               = var.bucket_name
   project_id         = var.project_id
   location           = var.region
   bucket_policy_only = false
+
+  //uniform_bucket_level_access = true
 
   lifecycle_rules = [{
     action = {
@@ -20,6 +21,9 @@ module "bucket" {
     {
       role   = "roles/storage.objectAdmin"
       member = "serviceAccount:${var.service_account_email}"
+
     }
   ]
 }
+
+
