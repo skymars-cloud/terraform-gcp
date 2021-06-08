@@ -1,6 +1,7 @@
 // https://github.com/terraform-google-modules/terraform-google-kubernetes-engine/blob/master/docs/private_clusters.md
 
 module "gke-private" {
+  count                          = var.enable_gke_module ? 1 : 0
   source                         = "./modules/gke-private"
   compute_engine_service_account = var.service_account_email
   ip_range_pods                  = "primary-dmz-subnet-secip-1"
