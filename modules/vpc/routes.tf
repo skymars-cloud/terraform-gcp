@@ -11,7 +11,7 @@ module "routes" {
       name        = "egress-internet"
       description = "route through IGW to access internet"
       // https://cloud.google.com/vpc-service-controls/docs/set-up-private-connectivity
-      destination_range = "0.0.0.0/0" // 199.36.153.4/30 - this range is enough for accessing google apis
+      destination_range = "0.0.0.0/0" // 199.36.153.4/30 & 199.36.153.8/30 - these ranges are enough for accessing google apis
       tags              = "egress-inet"
       next_hop_internet = "true"
     }
