@@ -4,6 +4,7 @@ module "bucket" {
   name       = var.bucket_name
   project_id = var.project_id
   location   = var.region
+  bucket_policy_only = false
 
   lifecycle_rules = [{
     action = {
