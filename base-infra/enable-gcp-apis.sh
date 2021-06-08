@@ -12,4 +12,5 @@ gcloud services enable serviceusage.googleapis.com --async --project prj-dev-pal
 gcloud services enable serviceconsumermanagement.googleapis.com --async --project prj-dev-palani-ram
 gcloud services enable cloudbuild.googleapis.com --async --project prj-dev-palani-ram               # needed for cloud function
 gcloud services enable cloudkms.googleapis.com --async --project prj-dev-palani-ram   # Cloud Key Management Service (KMS) API - needed for Big Query
+gcloud services enable sheets.googleapis.com --async --project prj-dev-palani-ram   # Google Sheets API
 

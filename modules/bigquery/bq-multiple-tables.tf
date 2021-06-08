@@ -104,32 +104,43 @@ module "bigquery" {
         source_uri_prefix = "gs://ci-bq-external-data/hive_partition_example/"
       }
       google_sheets_options = null
-    },
-    {
-      scopes                = ["cloud-platform", "https://www.googleapis.com/auth/drive"]
-      table_id              = "google_sheets_example"
-      autodetect            = true
-      compression           = null
-      ignore_unknown_values = true
-      max_bad_records       = 0
-      source_format         = "GOOGLE_SHEETS"
-      schema                = null
-      expiration_time       = 2524604400000 # 2050/01/01
-      labels = {
-        env      = "devops"
-        billable = "true"
-        owner    = "joedoe"
-      }
-      # DO NOT CHANGE - this is a publicly available Google Sheet provided by Google
-      # see here for reference: https://github.com/GoogleCloudPlatform/cloud-foundation-toolkit/pull/872
-      source_uris               = ["https://docs.google.com/spreadsheets/d/15v4N2UG6bv1RmX__wru4Ei_mYMdVcM1MwRRLxFKc55s"]
-      csv_options               = null
-      hive_partitioning_options = null
-      google_sheets_options = {
-        range             = null
-        skip_leading_rows = 1
-      }
     }
+
+    //    ,
+    //    {
+    //      scopes = [
+    //        "cloud-platform",
+    //        "https://www.googleapis.com/auth/drive",
+    //        "https://www.googleapis.com/auth/bigquery",
+    //        "https://www.googleapis.com/auth/spreadsheets.readonly",
+    //        "https://www.googleapis.com/auth/spreadsheets",
+    //        "https://www.googleapis.com/auth/drive.readonly"
+    //      ]
+    //      table_id              = "google_sheets_example"
+    //      autodetect            = true
+    //      compression           = null
+    //      ignore_unknown_values = true
+    //      max_bad_records       = 0
+    //      source_format         = "GOOGLE_SHEETS"
+    //      schema                = null
+    //      expiration_time       = 2524604400000 # 2050/01/01
+    //      labels = {
+    //        env      = "devops"
+    //        billable = "true"
+    //        owner    = "joedoe"
+    //      }
+    //      # DO NOT CHANGE - this is a publicly available Google Sheet provided by Google
+    //      # see here for reference: https://github.com/GoogleCloudPlatform/cloud-foundation-toolkit/pull/872
+    //      source_uris = ["https://docs.google.com/spreadsheets/d/15v4N2UG6bv1RmX__wru4Ei_mYMdVcM1MwRRLxFKc55s"] // original
+    //      //      source_uris               = ["https://docs.google.com/spreadsheets/d/1mnh_x_wT2UEAKlk29SL7-rF6REIZkgGMRLd5vtMUkuM"] // pals copy
+    //      csv_options               = null
+    //      hive_partitioning_options = null
+    //      google_sheets_options = {
+    //        range             = null
+    //        skip_leading_rows = 1
+    //      }
+    //    }
+
   ]
   dataset_labels = var.dataset_labels
   encryption_key = var.kms_key
