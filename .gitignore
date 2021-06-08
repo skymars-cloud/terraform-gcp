@@ -306,3 +306,5 @@ trustedCertificates.pem
 __pycache__
 venv/*
 **/venv/
+temp/*
+**/temp/
