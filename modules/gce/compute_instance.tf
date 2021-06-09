@@ -33,9 +33,9 @@ resource "google_compute_instance" "vm" {
 
   network_interface {
     subnetwork = data.google_compute_subnetwork.subnetwork.name
-//    access_config {
-//      // Ephemeral IP
-//    }
+    //    access_config {                         //CIS Benchmark v1.2 - 4.9 - gcp_compute_instance_forbid_external_ip_access_v1.yaml
+    //      // Ephemeral IP
+    //    }
   }
 
   metadata = {
