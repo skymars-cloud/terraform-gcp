@@ -289,7 +289,6 @@ FakesAssemblies/
 **.terraform/
 
 *.iml
-*.auto.tfvars
 
 # configuration file for init.sh
 /init.conf
