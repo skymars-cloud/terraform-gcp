@@ -21,7 +21,11 @@ resource "google_compute_instance" "vm" {
   name         = var.name
   machine_type = var.machine_type
   zone         = var.primary_zone
-  tags         = ["ingress-inet", "egress-inet"]
+  tags = [
+    "ingress-inet",
+  "egress-inet"]
+
+
 
   boot_disk {
     initialize_params {
@@ -30,31 +34,61 @@ resource "google_compute_instance" "vm" {
       size  = 20
     }
   }
-  can_ip_forward = false //CIS Benchmark v1.2 - 4.6 - gcp_compute_instance_ip_forward_v1.yaml
+  can_ip_forward = false
+  //CIS Benchmark v1.2 - 4.6 - gcp_compute_instance_ip_forward_v1.yaml
   network_interface {
     subnetwork = data.google_compute_subnetwork.subnetwork.name
-    access_config { //  CIS Benchmark v1.2 - 4.9 - gcp_compute_forbid_external_ip_access_v1.yaml
+    access_config {
+      //  CIS Benchmark v1.2 - 4.9 - gcp_compute_forbid_external_ip_access_v1.yaml
       // Ephemeral IP                             //  CIS Benchmark v1.2 - 4.9 - gcp_compute_forbid_external_ip_access_v1.yaml
-    } //  CIS Benchmark v1.2 - 4.9 - gcp_compute_forbid_external_ip_access_v1.yaml
+    }
+    //  CIS Benchmark v1.2 - 4.9 - gcp_compute_forbid_external_ip_access_v1.yaml
   }
+
 
   metadata = {
     name                   = var.name
     environment            = var.environment
-    block-project-ssh-keys = true  //  CIS Benchmark v1.2 - 4.3 - gcp_compute_instance_block_ssh_keys_v1.yaml
-    enable-oslogin         = false //  CIS Benchmark v1.2 - 4.4 - gcp_compute_enable_oslogin_project_v1.yaml
-    serial-port-enable     = false //  CIS Benchmark v1.2 - 4.5 - gcp_compute_instance_serial_port_enable_v1.yaml
+    block-project-ssh-keys = true
+    //  CIS Benchmark v1.2 - 4.3 - gcp_compute_instance_block_ssh_keys_v1.yaml
+    enable-oslogin = false
+    //  CIS Benchmark v1.2 - 4.4 - gcp_compute_enable_oslogin_project_v1.yaml
+    serial-port-enable = false
+    //  CIS Benchmark v1.2 - 4.5 - gcp_compute_instance_serial_port_enable_v1.yaml
   }
 
   metadata_startup_script = "echo instance created through terraform > /readme.txt"
 
-  service_account { //  CIS Benchmark v1.2 - 4.1 & 4.2 - gcp_compute_default_service_account_v1.yaml
+  service_account {
+    //  CIS Benchmark v1.2 - 4.1 & 4.2 - gcp_compute_default_service_account_v1.yaml
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-    email  = data.google_service_account.owner.email
-    scopes = ["cloud-platform"]
+    email = data.google_service_account.owner.email
+    scopes = [
+    "cloud-platform"]
   }
   shielded_instance_config {
-    enable_integrity_monitoring = true // CIS Benchmark v1.2 - 4.8 - gcp_compute_instance_shielded_v1.yaml
-    enable_vtpm                 = true // CIS Benchmark v1.2 - 4.8 - gcp_compute_instance_shielded_v1.yaml
+    enable_integrity_monitoring = true
+    // CIS Benchmark v1.2 - 4.8 - gcp_compute_instance_shielded_v1.yaml
+    enable_vtpm = true
+    // CIS Benchmark v1.2 - 4.8 - gcp_compute_instance_shielded_v1.yaml
   }
 }
+// violation check for CIS Benchmark v1.2 - 3.6 - gcp_restricted_firewall_rules_v1.yaml
+//resource "google_compute_firewall" "default" {
+//  name          = "allow-ssh-ingress"
+//  network       = data.google_compute_network.network.name
+//  source_ranges = ["0.0.0.0/0"]
+//  direction     = "INGRESS"
+//  allow {
+//    protocol = "any"
+//  }
+//  allow {
+//    protocol = "any"
+//    ports    = ["any", ""]
+//  }
+//}
+
+
+
+
+
