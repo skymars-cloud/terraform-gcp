@@ -46,6 +46,8 @@ module "bigquery" {
         owner    = "joedoe"
       },
     }
+
+
   ]
   external_tables = [
     {
@@ -97,6 +99,7 @@ module "bigquery" {
         "gs://ci-bq-external-data/hive_partition_example/year=2012/foo.csv",
         "gs://ci-bq-external-data/hive_partition_example/year=2013/bar.csv"
       ]
+
       csv_options = null
       hive_partitioning_options = {
         mode = "AUTO"
@@ -151,3 +154,4 @@ module "add_udfs" {
   dataset_id = module.bigquery.bigquery_dataset.dataset_id
   project_id = module.bigquery.bigquery_dataset.project
 }
+
