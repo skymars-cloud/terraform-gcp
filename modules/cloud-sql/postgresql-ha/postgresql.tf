@@ -59,6 +59,9 @@ module "postgresql" {
     start_time                     = "20:55"
     location                       = null
     point_in_time_recovery_enabled = false
+    transaction_log_retention_days = 2       // The number of days of transaction logs we retain for point in time restore, from 1-7.
+    retention_unit                 = "COUNT" // The unit that 'retained_backups' represents
+    retained_backups               = 2       // number of backups. if retention_unit is set to COUNT
   }
 
   // Read replica configurations

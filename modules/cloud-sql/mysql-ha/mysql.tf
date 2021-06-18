@@ -15,14 +15,14 @@ locals {
 }
 
 module "mysql" {
-  source               = "git::https://github.com/terraform-google-modules/terraform-google-sql-db.git//modules/mysql?ref=master"
-  name                 = var.mysql_ha_name
-  random_instance_name = true
-  project_id           = var.project_id
-  database_version     = var.database_version
-  region               = var.region
-
-  deletion_protection = false
+  source                      = "git::https://github.com/terraform-google-modules/terraform-google-sql-db.git//modules/mysql?ref=master"
+  name                        = var.mysql_ha_name
+  random_instance_name        = true
+  project_id                  = var.project_id
+  database_version            = var.database_version
+  region                      = var.region
+  authorized_gae_applications = null
+  deletion_protection         = false
 
   // Master configurations
   tier                            = "db-n1-standard-1"
@@ -51,10 +51,13 @@ module "mysql" {
   }
 
   backup_configuration = {
-    enabled            = true
-    binary_log_enabled = true
-    start_time         = "20:55"
-    location           = null
+    enabled                        = true
+    binary_log_enabled             = true
+    start_time                     = "20:55"
+    location                       = null
+    transaction_log_retention_days = 2       // The number of days of transaction logs we retain for point in time restore, from 1-7.
+    retention_unit                 = "COUNT" // The unit that 'retained_backups' represents
+    retained_backups               = 2       // number of backups. if retention_unit is set to COUNT
   }
 
   // Read replica configurations

@@ -54,3 +54,13 @@ module "kms_key" {
   project_id = var.project_id_dev
   keys       = ["kms-key-dev"]
 }
+
+//module "cg" {
+//  source            = "./modules/custom-governance"
+//  app_user_email_id = var.gsuite_user_email_id
+//  org_id            = var.org_id
+//  org_name          = var.org_name
+//  project_id        = var.project_id_dev
+//  project_name      = var.project_id_dev
+//  load_config_file  = false
+//}

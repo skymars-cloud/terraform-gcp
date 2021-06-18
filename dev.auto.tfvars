@@ -9,6 +9,7 @@ project_id_qa  = "prj-qa-palani-ram"
 
 service_account_id    = "srv-acct-admin"
 service_account_email = "srv-acct-admin@prj-dev-palani-ram.iam.gserviceaccount.com"
+gsuite_user_email_id  = "palani.ram@googlecloud.corp-partner.google.com"
 
 environment    = "dev"
 primary_region = "us-central1"
@@ -17,7 +18,7 @@ primary_zone   = "us-central1-f"
 zones        = ["us-central1-a", "us-central1-b", "us-central1-f"]
 zones_string = "us-central1-a,us-central1-b,us-central1-f"
 
-created_by = "Palani_Ram"
+created_by = "Palani Ram"
 
 vpc_name         = "primary-vpc"
 primary_subnet   = "primary-dmz-subnet"
