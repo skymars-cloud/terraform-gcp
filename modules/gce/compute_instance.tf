@@ -28,7 +28,7 @@ resource "google_compute_instance" "vm" {
 
 
   boot_disk {
-    initialize_params {
+      initialize_params {
       image = "centos-8-v20210512"
       type  = "pd-standard"
       size  = 20
