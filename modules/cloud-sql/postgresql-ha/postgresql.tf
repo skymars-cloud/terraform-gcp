@@ -36,7 +36,28 @@ module "postgresql" {
 
   deletion_protection = false
 
-  database_flags = [{ name = "autovacuum", value = "off" }]
+  database_flags = [
+    {
+      name  = "autovacuum",
+      value = "off"
+    },
+    {
+      name : "log_checkpoints",
+      value : "on"
+    },
+    {
+      name : "log_connections",
+      value : "on"
+    },
+    {
+      name : "log_disconnections",
+      value : "on"
+    },
+    {
+      name : "log_temp_files",
+      value : "0"
+    }
+  ]
 
   user_labels = {
     foo = "bar"
