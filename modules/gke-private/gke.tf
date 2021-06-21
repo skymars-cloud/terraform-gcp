@@ -8,7 +8,7 @@ data "google_project" "project" {
 
 module "gke-cluster" {
   source                     = "terraform-google-modules/kubernetes-engine/google//modules/private-cluster"
-  version                    = "14.3.0"
+  version                    = "15.0.0"
   project_id                 = var.project_id
   name                       = local.cluster_name
   region                     = var.region

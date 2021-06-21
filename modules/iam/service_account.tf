@@ -2,12 +2,10 @@
 data "google_service_account" "service_account" {
   account_id = "srv-acct-admin@prj-dev-palani-ram.iam.gserviceaccount.com"
 }
+// every resource needs an iam module, so put the iam.tf inside every module with right roles and users who has access to that role
 
-//resource "google_service_account_key" "mykey" {
-//  service_account_id = data.google_service_account.service_account.name
-//  public_key_type    = "TYPE_X509_PEM_FILE"
-//}
-
+// look into the modules in this repo for all IAM role associations
+// https://github.com/terraform-google-modules/terraform-google-iam.git
 
 // add these roles to service account srv-acct-admin using terraform
 // Actions Admin

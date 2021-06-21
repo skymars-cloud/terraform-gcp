@@ -48,6 +48,9 @@ variable "service_account_id" {
 variable "service_account_email" {
   type = string
 }
+variable "gsuite_user_email_id" {
+  type = string
+}
 
 variable "create_compute_instance" {
   type = bool
