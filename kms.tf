@@ -33,7 +33,7 @@ module "kms_key" {
 resource "google_kms_key_ring_iam_binding" "key_ring_iam_binding" {
   // key_ring_id format {project_id}/{location_name}/{key_ring_name} or {location_name}/{key_ring_name}
   key_ring_id = "${var.project_id_dev}/${local.kms_location}/${local.kms_crypto_keyring}"
-  role        = "roles/cloudkms.cryptoKeyEncrypter"
+  role        = "roles/cloudkms.admin"
   members = [
     "user:${var.gsuite_user_email_id}"
   ]
