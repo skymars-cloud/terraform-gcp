@@ -282,7 +282,7 @@ FakesAssemblies/
 .terraform*
 *.tfplan
 *.json
-
+**/*.json
 .idea/**
 **terraform.tfstate**
 **/notes

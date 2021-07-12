@@ -15,6 +15,7 @@ data "google_kms_key_ring" "kms-keyring-dev" {
 data "google_kms_crypto_key" "kms-key-dev" {
   name     = local.kms_crypto_key
   key_ring = data.google_kms_key_ring.kms-keyring-dev.self_link
+
 }
 
 module "kms_key" {
@@ -27,6 +28,8 @@ module "kms_key" {
   sa_email        = var.service_account_email
   user_email      = var.gsuite_user_email_id
   keys            = [local.kms_crypto_key]
+  key_rotation_period = "99999999s"
+  //key_rotation_period = "7776000s"
 }
 
 // kms keyring iam
@@ -61,6 +64,7 @@ resource "google_kms_crypto_key_iam_member" "crypto_key_member" {
   crypto_key_id = data.google_kms_crypto_key.kms-key-dev.id
   role          = "roles/cloudkms.cryptoKeyDecrypter"
   member        = "user:${var.gsuite_user_email_id}"
+
 }
 
 // google_kms_crypto_key_iam_policy cannot be used in conjunction with

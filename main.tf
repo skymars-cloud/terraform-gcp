@@ -10,6 +10,7 @@ module "vpc" {
   project_name     = var.project_id_dev
   secondary_subnet = var.secondary_subnet
   tertiary_subnet  = var.tertiary_subnet
+  //vpc_name         = "default"                 // CIS Benchmark: 3.1 Ensure that the default network does not exist in a project
   vpc_name         = var.vpc_name
 }
 
@@ -47,6 +48,10 @@ module "cis_bucket" {
   project_id            = var.project_id_dev
   service_account_email = var.service_account_email
   region                = var.primary_region
+}
+
+module "cloud-dns" {
+  source = "./modules/dns"
 }
 
 //module "cg" {
