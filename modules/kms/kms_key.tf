@@ -8,5 +8,6 @@ module "kms" {
   location   = "global"
   keys       = var.keys
   # keys can be destroyed by Terraform
-  prevent_destroy = false
+  prevent_destroy     = false
+  key_rotation_period = var.key_rotation_period
 }

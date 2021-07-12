@@ -36,27 +36,17 @@ module "kms_key" {
   sa_email        = var.service_account_email
   user_email      = var.gsuite_user_email_id
   keys            = [local.kms_crypto_key]
-
-}
-
-resource "google_kms_key_ring_iam_policy" "key_ring" {
-  key_ring_id = data.google_kms_key_ring.kms-keyring-dev.id
-  policy_data = data.google_iam_policy.admin.policy_data
+  key_rotation_period = "99999999s"
+  //key_rotation_period = "7776000s"
 }
 
 // kms keyring iam
 resource "google_kms_key_ring_iam_binding" "key_ring_iam_binding" {
   // key_ring_id format {project_id}/{location_name}/{key_ring_name} or {location_name}/{key_ring_name}
   key_ring_id = "${var.project_id_dev}/${local.kms_location}/${local.kms_crypto_keyring}"
-<<<<<<< HEAD
-  role        = "roles/cloudkms.cryptoKeyEncrypter"
-
-=======
   role        = "roles/cloudkms.admin"
->>>>>>> 9cdde28 (kms iam cloukms/admin added)
   members = [
-    "user:${var.gsuite_user_email_id}",
-    "allUsers"
+    "user:${var.gsuite_user_email_id}"
   ]
 }
 
