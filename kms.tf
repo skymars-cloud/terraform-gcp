@@ -48,8 +48,12 @@ resource "google_kms_key_ring_iam_policy" "key_ring" {
 resource "google_kms_key_ring_iam_binding" "key_ring_iam_binding" {
   // key_ring_id format {project_id}/{location_name}/{key_ring_name} or {location_name}/{key_ring_name}
   key_ring_id = "${var.project_id_dev}/${local.kms_location}/${local.kms_crypto_keyring}"
+<<<<<<< HEAD
   role        = "roles/cloudkms.cryptoKeyEncrypter"
 
+=======
+  role        = "roles/cloudkms.admin"
+>>>>>>> 9cdde28 (kms iam cloukms/admin added)
   members = [
     "user:${var.gsuite_user_email_id}",
     "allUsers"
