@@ -44,3 +44,7 @@ variable "kms_key_rings" {
   description = "list of kms_key_rings to add the IAM policies/bindings"
 }
 
+variable "key_rotation_period" {
+  type = string
+}
+

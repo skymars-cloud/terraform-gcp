@@ -7,3 +7,5 @@ module "network" {
   routing_mode                           = "REGIONAL"
   delete_default_internet_gateway_routes = true
 }
+
+

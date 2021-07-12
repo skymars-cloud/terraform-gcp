@@ -22,15 +22,21 @@ resource "google_compute_project_metadata_item" "oslogin" { //  CIS Benchmark v1
 
 
 
-//
 //resource "google_project_iam_binding" "project" {
-//  project = google_project.project.project_id
-//  role    = "roles/owner"
-//
-//  members = [
-//    "user:palani.ram@googlecloud.corp-partner.google.com"
-//  ]
+//  project = var.project_id
+//  //role    = "roles/iam.ServiceAccountUser"
+//  role    = "roles/iam.ServiceAccountTokenCreator"
+//  members =  ["srv-acct-admin@prj-dev-palani-ram.iam.gserviceaccount.com"]
 //}
+
+// CIS Benchmark : 1.6
+//resource "google_project_iam_member" "project" {
+//  project = var.project_id
+//  //role    = "roles/iam.ServiceAccountUser"
+//  role    = "roles/iam.ServiceAccountTokenCreator"
+//  member =  "user:srv-acct-admin@prj-dev-palani-ram.iam.gserviceaccount.com"
+//}
+
 //
 //resource "google_project_iam_member" "project" {
 //  project = data.google_project.project.project_id
