@@ -4,7 +4,7 @@ resource "google_bigquery_dataset_iam_binding" "data_viewer" {
 
   members = [
     "serviceAccount:srv-acct-admin@prj-dev-palani-ram.iam.gserviceaccount.com"
-//    "allUsers","allAuthenticatedUsers"                // CIS Benchmark: 7.1 Ensure that BigQuery datasets are not anonymously or publicly accessible
+    //    "allUsers","allAuthenticatedUsers"                // CIS Benchmark: 7.1 Ensure that BigQuery datasets are not anonymously or publicly accessible
   ]
   depends_on = [module.bigquery]
 }

@@ -12,7 +12,7 @@ resource "google_project_iam_audit_config" "all_services" {
   audit_log_config {
     log_type = "DATA_READ"
   }
-  }
+}
 
 resource "google_compute_project_metadata_item" "oslogin" { //  CIS Benchmark v1.2 - 4.4 - gcp_compute_enable_oslogin_project_v1.yaml
   key     = "enable-oslogin"
