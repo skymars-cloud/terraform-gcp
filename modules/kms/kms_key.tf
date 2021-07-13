@@ -10,5 +10,4 @@ module "kms" {
   # keys can be destroyed by Terraform
   prevent_destroy     = false
   key_rotation_period = var.key_rotation_period
-//  skip_initial_version_creation = true
 }
