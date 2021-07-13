@@ -12,13 +12,22 @@ resource "google_project_iam_audit_config" "all_services" {
   audit_log_config {
     log_type = "DATA_READ"
   }
-}
+  }
 
 resource "google_compute_project_metadata_item" "oslogin" { //  CIS Benchmark v1.2 - 4.4 - gcp_compute_enable_oslogin_project_v1.yaml
   key     = "enable-oslogin"
   value   = "TRUE"
   project = var.project_id
 } //  CIS Benchmark v1.2 - 4.4 - gcp_compute_enable_oslogin_project_v1.yaml
+
+//resource "google_organization_policy" "Skip_default_network_creation" {
+//  org_id     = var.org_id
+//  constraint = "compute.skipDefaultNetworkCreation"
+//
+//  boolean_policy {
+//    enforced = true
+//  }
+//}
 
 
 

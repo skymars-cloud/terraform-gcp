@@ -16,8 +16,14 @@ data "google_compute_subnetwork" "subnetwork" {
   region = var.region
 }
 
+resource "google_compute_attached_disk" "disk-1" {
+  disk     = google_compute_disk.disk-1.id
+  instance = google_compute_instance.vm.id
+  depends_on = [google_compute_disk.disk-1,google_compute_instance.vm]
+}
+
 resource "google_compute_instance" "vm" {
-  count        = var.create_compute_instance ? 1 : 0
+//  count        = var.create_compute_instance ? 1 : 0
   name         = var.name
   machine_type = var.machine_type
   zone         = var.primary_zone
@@ -25,7 +31,12 @@ resource "google_compute_instance" "vm" {
     "ingress-inet",
   "egress-inet"]
 
-
+//  attached_disk {
+//    source = "./modules/gce"
+//    device_name = "disk-1"
+//    disk_encryption_key_raw = ""
+//
+//  }
 
   boot_disk {
       initialize_params {
@@ -33,6 +44,8 @@ resource "google_compute_instance" "vm" {
       type  = "pd-standard"
       size  = 20
     }
+//    disk_encryption_key_sha256 = "N9jtnSxrBQd8AXpLfck5d5Yv5e1CN5LGeI4AiRqV1kg="
+//    disk_encryption_key_raw = "N9jtnSxrBQd8AXpLfck5d5Yv5e1CN5LGeI4AiRqV1kg="
   }
   can_ip_forward = false
   //CIS Benchmark v1.2 - 4.6 - gcp_compute_instance_ip_forward_v1.yaml
@@ -72,6 +85,11 @@ resource "google_compute_instance" "vm" {
     enable_vtpm = true
     // CIS Benchmark v1.2 - 4.8 - gcp_compute_instance_shielded_v1.yaml
   }
+
+  lifecycle {
+    ignore_changes = [attached_disk]
+  }
+  depends_on = [google_compute_disk.disk-1]
 }
 // violation check for CIS Benchmark v1.2 - 3.6 - gcp_restricted_firewall_rules_v1.yaml
 //resource "google_compute_firewall" "default" {
