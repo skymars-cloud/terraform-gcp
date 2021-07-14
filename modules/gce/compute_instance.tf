@@ -27,33 +27,23 @@ resource "google_compute_instance" "vm" {
   name         = var.name
   machine_type = var.machine_type
   zone         = var.primary_zone
-  tags = [
-    "ingress-inet",
-  "egress-inet"]
-
-  //  attached_disk {
-  //    source = "./modules/gce"
-  //    device_name = "disk-1"
-  //    disk_encryption_key_raw = ""
-  //
-  //  }
+  tags         = ["ingress-inet", "egress-inet"]
 
   boot_disk {
     initialize_params {
       image = "centos-8-v20210512"
-      type  = "pd-standard"
-      size  = 20
+      //      image = "centos-8"
+      type = "pd-standard"
+      size = 20
     }
-    //    disk_encryption_key_sha256 = "N9jtnSxrBQd8AXpLfck5d5Yv5e1CN5LGeI4AiRqV1kg="
-    //    disk_encryption_key_raw = "N9jtnSxrBQd8AXpLfck5d5Yv5e1CN5LGeI4AiRqV1kg="
   }
   can_ip_forward = false
   //CIS Benchmark v1.2 - 4.6 - gcp_compute_instance_ip_forward_v1.yaml
   network_interface {
     subnetwork = data.google_compute_subnetwork.subnetwork.name
     access_config {
-      //  CIS Benchmark v1.2 - 4.9 - gcp_compute_forbid_external_ip_access_v1.yaml
-      // Ephemeral IP                             //  CIS Benchmark v1.2 - 4.9 - gcp_compute_forbid_external_ip_access_v1.yaml
+      //      //  CIS Benchmark v1.2 - 4.9 - gcp_compute_forbid_external_ip_access_v1.yaml
+      //      // Ephemeral IP                             //  CIS Benchmark v1.2 - 4.9 - gcp_compute_forbid_external_ip_access_v1.yaml
     }
     //  CIS Benchmark v1.2 - 4.9 - gcp_compute_forbid_external_ip_access_v1.yaml
   }
