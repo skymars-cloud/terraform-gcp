@@ -16,11 +16,11 @@ data "google_compute_subnetwork" "subnetwork" {
   region = var.region
 }
 
-resource "google_compute_attached_disk" "disk-1" {
-  disk       = google_compute_disk.disk-1.id
-  instance   = google_compute_instance.vm.id
-  depends_on = [google_compute_disk.disk-1, google_compute_instance.vm]
-}
+//resource "google_compute_attached_disk" "disk-1" {
+//  disk       = google_compute_disk.disk-1.id
+//  instance   = google_compute_instance.vm.id
+//  depends_on = [google_compute_disk.disk-1, google_compute_instance.vm]
+//}
 
 resource "google_compute_instance" "vm" {
   //  count        = var.create_compute_instance ? 1 : 0
@@ -79,7 +79,7 @@ resource "google_compute_instance" "vm" {
   lifecycle {
     ignore_changes = [attached_disk]
   }
-  depends_on = [google_compute_disk.disk-1]
+  //  depends_on = [google_compute_disk.disk-1]
 }
 // violation check for CIS Benchmark v1.2 - 3.6 - gcp_restricted_firewall_rules_v1.yaml
 //resource "google_compute_firewall" "default" {

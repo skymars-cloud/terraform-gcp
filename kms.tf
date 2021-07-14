@@ -18,14 +18,14 @@ data "google_kms_crypto_key" "kms-key-dev" {
 
 }
 
-data "google_iam_policy" "admin" {
-  binding {
-    role = "roles/editor"
-    members = [
-      "allUsers", "allAuthenticatedUsers"
-    ]
-  }
-}
+//data "google_iam_policy" "admin" {
+//  binding {
+//    role = "roles/editor"
+//    members = [
+//      "allUsers", "allAuthenticatedUsers"
+//    ]
+//  }
+//}
 
 module "kms_key" {
   source              = "./modules/kms"
@@ -62,25 +62,28 @@ resource "google_kms_key_ring_iam_member" "key_ring_iam_member" {
 resource "google_kms_crypto_key_iam_binding" "crypto_key_binding" {
   crypto_key_id = data.google_kms_crypto_key.kms-key-dev.id
   role          = "roles/cloudkms.admin"
-
   members = [
-    "allAuthenticatedUsers", "allUsers",
+    "group:test-group@gmail.com",
     "user:${var.gsuite_user_email_id}"
   ]
-  depends_on = []
 }
 
-resource "google_kms_crypto_key_iam_member" "crypto_key_member" {
+resource "google_kms_crypto_key_iam_member" "crypto_key_user" {
   crypto_key_id = data.google_kms_crypto_key.kms-key-dev.id
   role          = "roles/cloudkms.cryptoKeyDecrypter"
   member        = "user:${var.gsuite_user_email_id}"
 }
 
+resource "google_kms_crypto_key_iam_member" "crypto_key_group" {
+  crypto_key_id = data.google_kms_crypto_key.kms-key-dev.id
+  role          = "roles/cloudkms.cryptoKeyDecrypter"
+  member        = "group:another-group@gmail.com"
+}
+
 //resource "google_kms_key_ring_import_job" "import-job" {
-//  key_ring = data.google_kms_key_ring.kms-keyring-dev.id
-//  import_job_id = "kms-import-job"
-//
-//  import_method = "RSA_OAEP_4096_SHA1_AES_256"
+//  key_ring         = data.google_kms_key_ring.kms-keyring-dev.id
+//  import_job_id    = "kms-import-job"
+//  import_method    = "RSA_OAEP_4096_SHA1_AES_256"
 //  protection_level = "SOFTWARE"
 //}
 
@@ -88,7 +91,7 @@ resource "google_kms_crypto_key_iam_member" "crypto_key_member" {
 // google_kms_crypto_key_iam_binding and google_kms_crypto_key_iam_member
 // or they will fight over what your policy should be.
 
-//data "google_iam_policy" "admin" {
+//data "google_iam_policy" "kms_admin" {
 //  binding {
 //    role = "roles/cloudkms.admin"
 //    members = [
@@ -99,10 +102,10 @@ resource "google_kms_crypto_key_iam_member" "crypto_key_member" {
 //
 //resource "google_kms_key_ring_iam_policy" "key_ring_iam_policy" {
 //  key_ring_id = data.google_kms_key_ring.kms-keyring-dev.id
-//  policy_data = data.google_iam_policy.admin.policy_data
+//  policy_data = data.google_iam_policy.kms_admin.policy_data
 //}
 //
 //resource "google_kms_crypto_key_iam_policy" "crypto_key_iam_policy" {
 //  crypto_key_id = data.google_kms_crypto_key.kms-key-dev.id
-//  policy_data   = data.google_iam_policy.admin.policy_data
+//  policy_data   = data.google_iam_policy.kms_admin.policy_data
 //}
