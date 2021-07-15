@@ -62,8 +62,9 @@ resource "google_kms_crypto_key_iam_binding" "crypto_key_binding" {
   crypto_key_id = data.google_kms_crypto_key.kms-key-dev.id
   role          = "roles/cloudkms.admin"
   members = [
-    "group:test-group@gmail.com",
-    "user:${var.gsuite_user_email_id}"
+    "serviceAccount:srv-account@world.com",
+    //    "group:test-group@gmail.com", // CIS Benchmark 1.11 violation
+    //    "user:${var.gsuite_user_email_id}"
   ]
 }
 
@@ -76,8 +77,18 @@ resource "google_kms_crypto_key_iam_member" "crypto_key_user" {
 resource "google_kms_crypto_key_iam_member" "crypto_key_group" {
   crypto_key_id = data.google_kms_crypto_key.kms-key-dev.id
   role          = "roles/cloudkms.cryptoKeyDecrypter"
-  member        = "group:another-group@gmail.com"
+  member        = "group:test-group@gmail.com"
 }
+
+resource "google_kms_crypto_key_iam_binding" "crypto_key_enc_role" {
+  crypto_key_id = data.google_kms_crypto_key.kms-key-dev.id
+  role          = "roles/cloudkms.cryptoKeyEncrypter"
+  members = [
+    "serviceAccount:srv-account@world.com"
+  ]
+}
+
+
 
 //resource "google_kms_key_ring_import_job" "import-job" {
 //  key_ring         = data.google_kms_key_ring.kms-keyring-dev.id
