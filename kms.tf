@@ -27,17 +27,17 @@ data "google_kms_crypto_key" "kms-key-dev" {
 //}
 
 module "kms_key" {
-  source              = "./modules/kms"
-  keyring             = local.kms_crypto_keyring
-  project_id          = var.project_id_dev
-  kms_crypto_keys     = [local.kms_crypto_key]
-  kms_key_rings       = [local.kms_crypto_keyring]
-  group_email         = var.gsuite_user_email_id
-  sa_email            = var.service_account_email
-  user_email          = var.gsuite_user_email_id
-  keys                = [local.kms_crypto_key]
-  key_rotation_period = "99999910s"
-  //key_rotation_period = "7776000s"
+  source          = "./modules/kms"
+  keyring         = local.kms_crypto_keyring
+  project_id      = var.project_id_dev
+  kms_crypto_keys = [local.kms_crypto_key]
+  kms_key_rings   = [local.kms_crypto_keyring]
+  group_email     = var.gsuite_user_email_id
+  sa_email        = var.service_account_email
+  user_email      = var.gsuite_user_email_id
+  keys            = [local.kms_crypto_key]
+  //  key_rotation_period = "99999910s" // CIS Benchmark 1.10 violation
+  key_rotation_period = "7776000s"
 }
 
 // kms keyring iam
