@@ -11,6 +11,7 @@ module "project_dev" {
 }
 
 
-module "iam" {
-  source = "./modules/iam"
-}
+//module "iam" {
+//  source               = "./modules/iam"
+//  gsuite_user_email_id = var.gsuite_user_email_id
+//}

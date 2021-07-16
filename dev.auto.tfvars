@@ -7,9 +7,10 @@ folder_id_palani   = "561421552790"
 project_id_dev = "prj-dev-palani-ram"
 project_id_qa  = "prj-qa-palani-ram"
 
-service_account_id    = "srv-acct-admin"
-service_account_email = "srv-acct-admin@prj-dev-palani-ram.iam.gserviceaccount.com"
-gsuite_user_email_id  = "palani.ram@googlecloud.corp-partner.google.com"
+service_account_id          = "srv-acct-admin"
+service_account_id_readonly = "srv-acct-viewer"
+service_account_email       = "srv-acct-admin@prj-dev-palani-ram.iam.gserviceaccount.com"
+gsuite_user_email_id        = "palani.ram@googlecloud.corp-partner.google.com"
 
 environment    = "dev"
 primary_region = "us-central1"

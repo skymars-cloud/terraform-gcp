@@ -1,4 +1,4 @@
-module "bigquery" {
+module "bigquery_parent" {
   source                      = "git::https://github.com/terraform-google-modules/terraform-google-bigquery.git?ref=master"
   dataset_id                  = "foo"
   dataset_name                = "foo"
@@ -7,6 +7,36 @@ module "bigquery" {
   default_table_expiration_ms = var.default_table_expiration_ms
   project_id                  = var.project_id
   location                    = "US"
+
+  access = [
+    {
+      role          = "roles/bigquery.dataOwner"
+      user_by_email = "srv-acct-admin@prj-dev-palani-ram.iam.gserviceaccount.com"
+    },
+    {
+      role          = "roles/bigquery.dataEditor"
+      user_by_email = "srv-acct-admin@prj-dev-palani-ram.iam.gserviceaccount.com"
+    },
+    {
+      role          = "roles/bigquery.dataViewer"
+      user_by_email = "srv-acct-admin@prj-dev-palani-ram.iam.gserviceaccount.com"
+    }
+  ]
+  //  access {
+  //    role          = "OWNER"
+  //    user_by_email = "srv-acct-admin@prj-dev-palani-ram.iam.gserviceaccount.com"
+  //  }
+  //
+  //  access {
+  //    role          = "WRITER"
+  //    user_by_email = "srv-acct-admin@prj-dev-palani-ram.iam.gserviceaccount.com"
+  //  }
+  //
+  //  access {
+  //    role          = "READER"
+  //    user_by_email = "srv-acct-admin@prj-dev-palani-ram.iam.gserviceaccount.com"
+  //  }
+
   tables = [
     {
       table_id = "foo",
@@ -151,7 +181,7 @@ module "bigquery" {
 
 module "add_udfs" {
   source     = "git::https://github.com/terraform-google-modules/terraform-google-bigquery.git//modules/udf?ref=master"
-  dataset_id = module.bigquery.bigquery_dataset.dataset_id
-  project_id = module.bigquery.bigquery_dataset.project
+  dataset_id = module.bigquery_parent.bigquery_dataset.dataset_id
+  project_id = module.bigquery_parent.bigquery_dataset.project
 }
 
