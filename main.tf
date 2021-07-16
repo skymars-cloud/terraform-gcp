@@ -26,7 +26,8 @@ module "compute_instance" {
   region                  = var.primary_region
   subnet                  = var.primary_subnet
   vpc_name                = var.vpc_name
-  depends_on              = [module.vpc]
+  service_account_email   = var.service_account_email
+  depends_on              = [module.vpc, module.kms_key]
 }
 
 // url to invoke the function https://us-central1-prj-dev-palani-ram.cloudfunctions.net/hello-world

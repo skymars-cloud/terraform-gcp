@@ -10,11 +10,11 @@ resource "google_project_iam_binding" "serviceAccountAdmin" {
   ]
 }
 
-resource "google_project_iam_binding" "serviceAccountUser" {
-  project = var.project_id
-  role    = "roles/iam.serviceAccountUser"
-
-  members = [
-    "user:${var.gsuite_user_email_id}"
-  ]
-}
+//resource "google_project_iam_binding" "serviceAccountUser" {
+//  project = var.project_id
+//  role    = "roles/iam.serviceAccountUser"
+//
+//  members = [
+//    "user:${var.gsuite_user_email_id}"
+//  ]
+//}

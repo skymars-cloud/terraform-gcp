@@ -1,3 +1,6 @@
+//data "google_service_account" "owner" {
+//  account_id = var.service_account_id
+//}
 
 locals {
   kms_crypto_keyring = "kms-keyring-dev"
@@ -73,6 +76,17 @@ resource "google_kms_crypto_key_iam_member" "crypto_key_user" {
   role          = "roles/cloudkms.cryptoKeyDecrypter"
   member        = "user:${var.gsuite_user_email_id}"
 }
+
+// this iam policy is needed to attach a disk to a vm
+resource "google_kms_crypto_key_iam_binding" "crypto_key" {
+  crypto_key_id = data.google_kms_crypto_key.kms-key-dev.self_link
+  role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
+  members = [
+    //    "serviceAccount:service-<PROJECT NUMBER>@compute-system.iam.gserviceaccount.com",
+    "serviceAccount:${var.service_account_email}"
+  ]
+}
+
 
 //resource "google_kms_crypto_key_iam_binding" "crypto_key_enc_role" {
 //  crypto_key_id = data.google_kms_crypto_key.kms-key-dev.id

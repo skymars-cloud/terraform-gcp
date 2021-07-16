@@ -16,14 +16,13 @@ data "google_compute_subnetwork" "subnetwork" {
   region = var.region
 }
 
-//resource "google_compute_attached_disk" "disk-1" {
-//  disk       = google_compute_disk.disk-1.id
-//  instance   = google_compute_instance.vm.id
-//  depends_on = [google_compute_disk.disk-1, google_compute_instance.vm]
-//}
+resource "google_compute_attached_disk" "disk-1" {
+  disk       = google_compute_disk.disk-1.id
+  instance   = google_compute_instance.vm.id
+  depends_on = [google_compute_disk.disk-1, google_compute_instance.vm]
+}
 
 resource "google_compute_instance" "vm" {
-  //  count        = var.create_compute_instance ? 1 : 0
   name         = var.name
   machine_type = var.machine_type
   zone         = var.primary_zone
@@ -32,9 +31,8 @@ resource "google_compute_instance" "vm" {
   boot_disk {
     initialize_params {
       image = "centos-8-v20210512"
-      //      image = "centos-8"
-      type = "pd-standard"
-      size = 20
+      type  = "pd-standard"
+      size  = 20
     }
   }
   can_ip_forward = false
