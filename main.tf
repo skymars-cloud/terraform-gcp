@@ -11,23 +11,24 @@ module "vpc" {
   secondary_subnet = var.secondary_subnet
   tertiary_subnet  = var.tertiary_subnet
   //vpc_name         = "default"                 // CIS Benchmark: 3.1 Ensure that the default network does not exist in a project
-  vpc_name         = var.vpc_name
+  vpc_name = var.vpc_name
 }
 
-//module "compute_instance" {
-//  source                  = "./modules/gce"
-//  project_id              = var.project_id_dev
-//  machine_type            = "e2-micro"
-//  name                    = "pals-jumphost"
-//  environment             = var.environment
-//  primary_zone            = var.primary_zone
-//  service_account_id      = var.service_account_id
-//  create_compute_instance = var.create_compute_instance
-//  region                  = var.primary_region
-//  subnet                  = var.primary_subnet
-//  vpc_name                = var.vpc_name
-//  depends_on              = [module.vpc]
-//}
+module "compute_instance" {
+  source                  = "./modules/gce"
+  project_id              = var.project_id_dev
+  machine_type            = "e2-micro"
+  name                    = "pals-jumphost"
+  environment             = var.environment
+  primary_zone            = var.primary_zone
+  service_account_id      = var.service_account_id
+  create_compute_instance = var.create_compute_instance
+  region                  = var.primary_region
+  subnet                  = var.primary_subnet
+  vpc_name                = var.vpc_name
+  service_account_email   = var.service_account_email
+  depends_on              = [module.vpc, module.kms_key]
+}
 
 // url to invoke the function https://us-central1-prj-dev-palani-ram.cloudfunctions.net/hello-world
 module "fn_hello" {
@@ -50,10 +51,16 @@ module "cis_bucket" {
   region                = var.primary_region
 }
 
-module "cloud-dns" {
-  source = "./modules/dns"
+// this module creates 2 services accounts sa-first and sa-second and adds all iam roles
+module "service-accounts" {
+  source     = "./modules/service-accounts"
   project_id = var.project_id_dev
 }
+
+//module "cloud-dns" {
+//  source     = "./modules/dns"
+//  project_id = var.project_id_dev
+//}
 
 //module "cg" {
 //  source            = "./modules/custom-governance"

@@ -13,7 +13,6 @@ data "google_kms_crypto_key_version" "dev_crypto_key" {
 }
 
 module "bq" {
-  count      = var.enable_bq_module ? 1 : 0
   source     = "./modules/bigquery"
   project_id = var.project_id_dev
   kms_key    = data.google_kms_crypto_key_version.dev_crypto_key.crypto_key
