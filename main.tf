@@ -50,6 +50,12 @@ module "cis_bucket" {
   region                = var.primary_region
 }
 
+// this module creates 2 services accounts sa-first and sa-second and adds all iam roles
+module "service-accounts" {
+  source     = "./modules/service-accounts"
+  project_id = var.project_id_dev
+}
+
 //module "cloud-dns" {
 //  source     = "./modules/dns"
 //  project_id = var.project_id_dev
