@@ -74,12 +74,6 @@ resource "google_kms_crypto_key_iam_member" "crypto_key_user" {
   member        = "user:${var.gsuite_user_email_id}"
 }
 
-//resource "google_kms_crypto_key_iam_member" "crypto_key_group" {
-//  crypto_key_id = data.google_kms_crypto_key.kms-key-dev.id
-//  role          = "roles/cloudkms.cryptoKeyDecrypter"
-//  member        = "group:palani.ram@googlecloud.corp-partner.google.com"
-//}
-
 //resource "google_kms_crypto_key_iam_binding" "crypto_key_enc_role" {
 //  crypto_key_id = data.google_kms_crypto_key.kms-key-dev.id
 //  role          = "roles/cloudkms.cryptoKeyEncrypter"
