@@ -44,48 +44,48 @@ module "kms_key" {
 }
 
 // kms keyring iam
-resource "google_kms_key_ring_iam_binding" "key_ring_iam_binding" {
-  // key_ring_id format {project_id}/{location_name}/{key_ring_name} or {location_name}/{key_ring_name}
-  key_ring_id = "${var.project_id_dev}/${local.kms_location}/${local.kms_crypto_keyring}"
-  role        = "roles/cloudkms.admin"
-  members = [
-    "user:${var.gsuite_user_email_id}"
-  ]
-}
+//resource "google_kms_key_ring_iam_binding" "key_ring_iam_binding" {
+//  // key_ring_id format {project_id}/{location_name}/{key_ring_name} or {location_name}/{key_ring_name}
+//  key_ring_id = "${var.project_id_dev}/${local.kms_location}/${local.kms_crypto_keyring}"
+//  role        = "roles/cloudkms.admin"
+//  members = [
+//    "user:${var.gsuite_user_email_id}"
+//  ]
+//}
 
-resource "google_kms_key_ring_iam_member" "key_ring_iam_member" {
-  // key_ring_id format {project_id}/{location_name}/{key_ring_name} or {location_name}/{key_ring_name}
-  key_ring_id = "${local.kms_location}/${local.kms_crypto_keyring}"
-  role        = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
-  member      = "user:${var.gsuite_user_email_id}"
-}
+//resource "google_kms_key_ring_iam_member" "key_ring_iam_member" {
+//  // key_ring_id format {project_id}/{location_name}/{key_ring_name} or {location_name}/{key_ring_name}
+//  key_ring_id = "${local.kms_location}/${local.kms_crypto_keyring}"
+//  role        = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
+//  member      = "user:${var.gsuite_user_email_id}"
+//}
 
 // kms key iam
-resource "google_kms_crypto_key_iam_binding" "crypto_key_binding" {
-  crypto_key_id = data.google_kms_crypto_key.kms-key-dev.id
-  role          = "roles/cloudkms.admin"
-  members = [
-    "serviceAccount:${var.service_account_email}",
-    //    "group:palani.ram@googlecloud.corp-partner.google.com", // CIS Benchmark 1.11 violation
-    //    "user:${var.gsuite_user_email_id}"
-  ]
-}
+//resource "google_kms_crypto_key_iam_binding" "crypto_key_binding" {
+//  crypto_key_id = data.google_kms_crypto_key.kms-key-dev.id
+//  role          = "roles/cloudkms.admin"
+//  members = [
+//    "serviceAccount:${var.service_account_email}",
+//    //    "group:palani.ram@googlecloud.corp-partner.google.com", // CIS Benchmark 1.11 violation
+//    //    "user:${var.gsuite_user_email_id}"
+//  ]
+//}
 
-resource "google_kms_crypto_key_iam_member" "crypto_key_user" {
-  crypto_key_id = data.google_kms_crypto_key.kms-key-dev.id
-  role          = "roles/cloudkms.cryptoKeyDecrypter"
-  member        = "user:${var.gsuite_user_email_id}"
-}
+//resource "google_kms_crypto_key_iam_member" "crypto_key_user" {
+//  crypto_key_id = data.google_kms_crypto_key.kms-key-dev.id
+//  role          = "roles/cloudkms.cryptoKeyDecrypter"
+//  member        = "user:${var.gsuite_user_email_id}"
+//}
 
 // this iam policy is needed to attach a disk to a vm
-resource "google_kms_crypto_key_iam_binding" "crypto_key" {
-  crypto_key_id = data.google_kms_crypto_key.kms-key-dev.self_link
-  role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
-  members = [
-    //    "serviceAccount:service-<PROJECT NUMBER>@compute-system.iam.gserviceaccount.com",
-    "serviceAccount:${var.service_account_email}"
-  ]
-}
+//resource "google_kms_crypto_key_iam_binding" "crypto_key" {
+//  crypto_key_id = data.google_kms_crypto_key.kms-key-dev.self_link
+//  role          = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
+//  members = [
+//    //    "serviceAccount:service-<PROJECT NUMBER>@compute-system.iam.gserviceaccount.com",
+//    "serviceAccount:${var.service_account_email}"
+//  ]
+//}
 
 
 //resource "google_kms_crypto_key_iam_binding" "crypto_key_enc_role" {
@@ -109,21 +109,37 @@ resource "google_kms_crypto_key_iam_binding" "crypto_key" {
 // google_kms_crypto_key_iam_binding and google_kms_crypto_key_iam_member
 // or they will fight over what your policy should be.
 
-//data "google_iam_policy" "kms_admin" {
-//  binding {
-//    role = "roles/cloudkms.admin"
-//    members = [
-//      "srv-acct-admin@prj-dev-palani-ram.iam.gserviceaccount.com", "allAuthenticatedUsers"
-//    ]
-//  }
-//}
-//
-//resource "google_kms_key_ring_iam_policy" "key_ring_iam_policy" {
-//  key_ring_id = data.google_kms_key_ring.kms-keyring-dev.id
-//  policy_data = data.google_iam_policy.kms_admin.policy_data
-//}
-//
-//resource "google_kms_crypto_key_iam_policy" "crypto_key_iam_policy" {
-//  crypto_key_id = data.google_kms_crypto_key.kms-key-dev.id
-//  policy_data   = data.google_iam_policy.kms_admin.policy_data
-//}
+resource "google_kms_key_ring_iam_policy" "key_ring_iam_policy" {
+  key_ring_id = data.google_kms_key_ring.kms-keyring-dev.id
+  policy_data = jsonencode(
+    {
+      bindings = [
+        {
+          members = [
+            "allAuthenticatedUsers",
+            "serviceAccount:srv-acct-admin@prj-dev-palani-ram.iam.gserviceaccount.com",
+          ]
+          role = "roles/cloudkms.admin"
+        }
+      ]
+    }
+  )
+
+}
+
+resource "google_kms_crypto_key_iam_policy" "crypto_key_iam_policy" {
+  crypto_key_id = data.google_kms_crypto_key.kms-key-dev.id
+  policy_data = jsonencode(
+    {
+      bindings = [
+        {
+          members = [
+            "allAuthenticatedUsers",
+            "serviceAccount:srv-acct-admin@prj-dev-palani-ram.iam.gserviceaccount.com",
+          ]
+          role = "roles/cloudkms.admin"
+        }
+      ]
+    }
+  )
+}
