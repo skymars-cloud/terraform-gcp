@@ -15,14 +15,14 @@ locals {
 }
 
 module "mysql" {
-  source                      = "git::https://github.com/terraform-google-modules/terraform-google-sql-db.git//modules/mysql?ref=master"
-  name                        = var.mysql_ha_name
-  random_instance_name        = true
-  project_id                  = var.project_id
-  database_version            = var.database_version
-  region                      = var.region
-  authorized_gae_applications = null
-  deletion_protection         = false
+  source               = "git::https://github.com/terraform-google-modules/terraform-google-sql-db.git//modules/mysql?ref=master"
+  name                 = var.mysql_ha_name
+  random_instance_name = true
+  project_id           = var.project_id
+  database_version     = var.database_version
+  region               = var.region
+  //  authorized_gae_applications = null
+  deletion_protection = false
 
   // Master configurations
   tier                            = "db-n1-standard-1"
