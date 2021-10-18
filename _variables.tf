@@ -83,3 +83,11 @@ variable "secondary_subnet" {
 variable "tertiary_subnet" {
   type = string
 }
+variable "service_accounts" {
+  description = "List of service accounts & IAM permissions"
+  type = list(object({
+    service_account_name        = string
+    service_account_permissions = map(list(string))
+    }
+  ))
+}

@@ -1,3 +1,14 @@
+locals {
+  service_account_name = {
+    for a in var.service_accounts : a.service_account_name => { for x, y in a : x => y if x != "service_account_permissions" }
+  }
+
+  service_account_iam_bindings = {
+    for x in var.service_accounts : x.service_account_name => x.service_account_permissions
+  }
+}
+
+
 module "service_accounts" {
   source        = "git::https://github.com/terraform-google-modules/terraform-google-service-accounts.git?ref=master"
   project_id    = var.project_id

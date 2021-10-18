@@ -32,3 +32,25 @@ enable_mysql_module      = true
 enable_mssql_module      = true
 enable_bq_module         = true
 
+service_accounts = [
+  {
+    service_account_name = "sa-first"
+    service_account_permissions = {
+      "roles/storage.admin" = [
+        "user:palani.ram@googlecloud.corp-partner.google.com",
+        "serviceAccount:srv-acct-admin@prj-dev-palani-ram.iam.gserviceaccount.com",
+        "serviceAccount:sa-first@prj-dev-palani-ram.iam.gserviceaccount.com",
+      ]
+    }
+  },
+  {
+    service_account_name = "sa-second"
+    service_account_permissions = {
+      "roles/storage.admin" = [
+        "user:palani.ram@googlecloud.corp-partner.google.com",
+        "serviceAccount:srv-acct-admin@prj-dev-palani-ram.iam.gserviceaccount.com",
+        "serviceAccount:sa-second@prj-dev-palani-ram.iam.gserviceaccount.com",
+      ]
+    }
+  },
+]

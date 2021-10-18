@@ -53,8 +53,9 @@ module "cis_bucket" {
 
 // this module creates 2 services accounts sa-first and sa-second and adds all iam roles
 module "service-accounts" {
-  source     = "./modules/service-accounts"
-  project_id = var.project_id_dev
+  source           = "./modules/service-accounts"
+  project_id       = var.project_id_dev
+  service_accounts = var.service_accounts
 }
 
 //module "cloud-dns" {
@@ -72,3 +73,8 @@ module "service-accounts" {
 //  load_config_file  = false
 //}
 
+module "dataproc-cluster" {
+  source                = "./modules/dataproc"
+  project_id            = var.project_id_qa
+  service_account_email = var.service_account_email
+}
