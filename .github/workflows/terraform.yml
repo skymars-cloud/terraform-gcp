@@ -48,18 +48,20 @@ jobs:
       run: terraform validate
 
     # Generates an execution plan for Terraform
-    - name: Terraform Plan
-      run: terraform plan
-      continue-on-error: false
-      env:
-        GOOGLE_CREDENTIALS: ${{secrets.GOOGLE_CREDENTIALS}}
+#    - name: Terraform Plan
+#      run: terraform plan
+#      continue-on-error: false
+#      env:
+#        GOOGLE_CREDENTIALS: ${{secrets.GOOGLE_CREDENTIALS}}
 
     # Terraform validator, validates the tf plan against security policies
-    - name: Security Policy Validator
+    - name: Security Policy Validation
       run: |
         git clone https://github.com/skymars-cloud/policy-library.git
-        gsutil cp gs://terraform-validator/releases/v0.9.1/terraform-validator_linux_amd64-0.9.1.tar.gz .
-        tar -xzvf terraform-validator_linux_amd64-0.9.1.tar.gz
+#        gsutil cp gs://terraform-validator/releases/v0.9.1/terraform-validator_linux_amd64-0.9.1.tar.gz .
+#        tar -xzvf terraform-validator_linux_amd64-0.9.1.tar.gz
+        gsutil cp gs://terraform-validator/releases/v0.9.0/terraform-validator_linux_amd64-0.9.0.tar.gz .
+        tar -xzvf terraform-validator_linux_amd64-0.9.0.tar.gz
         chmod 755 terraform-validator
         rm -rf secure.tfplan && terraform plan -out=secure.tfplan
         rm -rf secure.json && terraform show -json secure.tfplan > secure.json
