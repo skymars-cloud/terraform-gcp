@@ -62,10 +62,15 @@ jobs:
         gsutil cp gs://terraform-validator/releases/v0.9.1/terraform-validator_darwin_amd64-0.9.1.tar.gz .
         tar -xzvf terraform-validator_darwin_amd64-0.9.1.tar.gz
         chmod 755 terraform-validator
-        rm -rf secure.tfplan && terraform plan -out=secure.tfplan
-        rm -rf secure.json && terraform show -json ./secure.tfplan > secure.json
+        echo "command create tfplan"
+        rm -rf secure.tfplan && terraform plan -no-color -refresh=true -out=secure.tfplan
+        echo "command create secure.json"
+        rm -rf secure.json && terraform show -no-color -json ./secure.tfplan > secure.json
+        echo "command view secure.json"
+        cat ./secure.json
         echo "command : ./terraform-validator validate ./secure.json --policy-path=./policy-library --project prj-dev-palani-ram"
         ./terraform-validator validate ./secure.json --policy-path=./policy-library --project prj-dev-palani-ram
+        echo "all commands completed"
       continue-on-error: false
       env:
         GOOGLE_CREDENTIALS: ${{secrets.GOOGLE_CREDENTIALS}}
