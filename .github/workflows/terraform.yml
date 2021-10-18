@@ -63,8 +63,11 @@ jobs:
         tar -xzvf terraform-validator_darwin_amd64-0.9.1.tar.gz
         chmod 755 terraform-validator
         rm -rf secure.tfplan && terraform plan -out=secure.tfplan
-        rm -rf secure.json && terraform show -json secure.tfplan > secure.json
-        cat secure.json
+        echo "rm -rf secure.json && terraform show -json ./secure.tfplan > secure.json"
+        rm -rf secure.json && terraform show -json ./secure.tfplan > secure.json
+        echo "cat ./secure.json"
+        cat ./secure.json
+        echo "./terraform-validator validate ./secure.json --policy-path=./policy-library --project prj-dev-palani-ram"
         ./terraform-validator validate ./secure.json --policy-path=./policy-library --project prj-dev-palani-ram
       continue-on-error: false
       env:
