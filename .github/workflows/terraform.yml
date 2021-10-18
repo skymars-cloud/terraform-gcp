@@ -58,14 +58,14 @@ jobs:
     - name: Security Policy Validation
       run: |
         git clone https://github.com/skymars-cloud/policy-library.git
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         pip3 install gsutil
         gsutil cp gs://terraform-validator/releases/v0.9.1/terraform-validator_darwin_amd64-0.9.1.tar.gz .
         tar -xzvf terraform-validator_darwin_amd64-0.9.1.tar.gz
         chmod 755 terraform-validator
         rm -rf secure.tfplan && terraform plan -out=secure.tfplan
         rm -rf secure.json && terraform show -json secure.tfplan > secure.json
-        ./terraform-validator validate --project prj-dev-palani-ram secure.json --policy-path=policy-library
+        cat secure.json
+        ./terraform-validator validate ./secure.json --policy-path=./policy-library --project prj-dev-palani-ram
       continue-on-error: false
       env:
         GOOGLE_CREDENTIALS: ${{secrets.GOOGLE_CREDENTIALS}}
