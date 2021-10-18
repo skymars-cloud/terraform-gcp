@@ -3,7 +3,7 @@ module "bucket" {
   name               = var.bucket_name
   project_id         = var.project_id
   location           = var.region
-  bucket_policy_only = true //CIS Benchmark v1.2 - 5.2 - gcp_storage_bucket_policy_only.yaml
+  bucket_policy_only = false //CIS Benchmark v1.2 - 5.2 - gcp_storage_bucket_policy_only.yaml
 
   lifecycle_rules = [{
     action = {

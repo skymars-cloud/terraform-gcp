@@ -33,6 +33,7 @@ jobs:
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       run: terraform init
+      continue-on-error: false
       env:
         GOOGLE_CREDENTIALS: ${{secrets.GOOGLE_CREDENTIALS}}
 
@@ -48,6 +49,21 @@ jobs:
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       run: terraform plan
+      continue-on-error: false
+      env:
+        GOOGLE_CREDENTIALS: ${{secrets.GOOGLE_CREDENTIALS}}
+
+    # Terraform validator, validates the tf plan against security policies
+    - name: Security Policy Validator
+      run: |
+        git clone https://github.com/skymars-cloud/policy-library.git
+        gsutil cp gs://terraform-validator/releases/v0.9.1/terraform-validator_linux_amd64-0.9.1.tar.gz .
+        tar -xzvf terraform-validator_linux_amd64-0.9.1.tar.gz
+        chmod 755 terraform-validator
+        rm -rf secure.tfplan && terraform plan -out=secure.tfplan
+        rm -rf secure.json && terraform show -json secure.tfplan > secure.json
+        terraform-validator validate --verbose --project prj-dev-palani-ram secure.json --policy-path=policy-library
+      continue-on-error: false
       env:
         GOOGLE_CREDENTIALS: ${{secrets.GOOGLE_CREDENTIALS}}
 
@@ -56,5 +72,6 @@ jobs:
     - name: Terraform Apply
       if: github.ref == 'refs/heads/master' && github.event_name == 'push'
       run: terraform apply -auto-approve
+      continue-on-error: false
       env:
         GOOGLE_CREDENTIALS: ${{secrets.GOOGLE_CREDENTIALS}}
