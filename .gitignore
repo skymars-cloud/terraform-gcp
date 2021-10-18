@@ -10,7 +10,10 @@
 *.war
 *.ear
 
-
+terraform-validator
+*.tar.gz_.gstmp
+*.tar.gz
+*.tar
 
 #archives
 *.zip
