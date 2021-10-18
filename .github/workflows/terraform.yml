@@ -64,7 +64,8 @@ jobs:
         tar -xzvf terraform-validator_darwin_amd64-0.9.1.tar.gz
         chmod 755 terraform-validator
         rm -rf secure.tfplan && terraform plan -out=secure.tfplan
-        ./terraform-validator validate --project prj-dev-palani-ram secure.tfplan --policy-path=policy-library
+        rm -rf secure.json && terraform show -json secure.tfplan > secure.json
+        ./terraform-validator validate --project prj-dev-palani-ram secure.json --policy-path=policy-library
       continue-on-error: false
       env:
         GOOGLE_CREDENTIALS: ${{secrets.GOOGLE_CREDENTIALS}}
