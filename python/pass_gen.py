@@ -5,13 +5,13 @@ from password_generator import PasswordGenerator
 
 def pass_gen():
   pwo = PasswordGenerator()
-  key = pwo.non_duplicate_password(20)
+  key = pwo.non_duplicate_password(15)
   print("generated pass:", key)
 
 def pass_gen_exclusion():
   pwo = PasswordGenerator()
   pwo.excludeschars = "-$~@:.+-&= "  # (Optional)
-  key = pwo.non_duplicate_password(20)
+  key = pwo.non_duplicate_password(15)
   print("generated pass with some chars exclusion:", key)
 
 pass_gen()

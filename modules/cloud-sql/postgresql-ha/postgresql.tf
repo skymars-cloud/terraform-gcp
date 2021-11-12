@@ -98,6 +98,7 @@ module "postgresql" {
       disk_size        = null
       disk_type        = "PD_HDD"
       user_labels      = { bar = "baz1" }
+      encryption_key_name = null
     },
     {
       name             = "1"
@@ -109,6 +110,7 @@ module "postgresql" {
       disk_size        = null
       disk_type        = "PD_HDD"
       user_labels      = { bar = "baz2" }
+      encryption_key_name = null
     },
     {
       name             = "2"
@@ -120,6 +122,7 @@ module "postgresql" {
       disk_size        = null
       disk_type        = "PD_HDD"
       user_labels      = { bar = "baz3" }
+      encryption_key_name = null
     },
   ]
 

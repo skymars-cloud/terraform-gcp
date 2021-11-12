@@ -73,6 +73,7 @@ module "mysql" {
       disk_size        = null
       disk_type        = "PD_HDD"
       user_labels      = { bar = "baz" }
+      encryption_key_name = null
     },
     {
       name             = "1"
@@ -84,6 +85,7 @@ module "mysql" {
       disk_size        = null
       disk_type        = "PD_HDD"
       user_labels      = { bar = "baz" }
+      encryption_key_name = null
     },
     {
       name             = "2"
@@ -95,6 +97,7 @@ module "mysql" {
       disk_size        = null
       disk_type        = "PD_HDD"
       user_labels      = { bar = "baz" }
+      encryption_key_name = null
     },
   ]
 

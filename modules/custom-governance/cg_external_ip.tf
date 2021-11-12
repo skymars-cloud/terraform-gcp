@@ -1,5 +1,5 @@
 module "app" {
-  source                   = "gcs::https://www.googleapis.com/storage/v1/custom-governance-release/terraform-module/terraform-custom-governance-v1.4.1.zip//terraform-custom-governance/examples/external_ip"
+  source                   = "gcs::https://www.googleapis.com/storage/v1/custom-governance-release/terraform-module/terraform-custom-governance-v1.4.4.zip//terraform-custom-governance/examples/external_ip"
   project_id               = var.project_id
   static_ip_name           = google_compute_global_address.ext-ip-cg-appserver.name
   hostname                 = "CG_DOMAIN_NAME"
@@ -16,6 +16,5 @@ module "app" {
 
 
 }
-
 
 

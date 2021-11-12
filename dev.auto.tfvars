@@ -25,10 +25,15 @@ primary_subnet   = "primary-dmz-subnet"
 secondary_subnet = "secondary-dmz-subnet"
 tertiary_subnet  = "tertiary-dmz-subnet"
 
-create_compute_instance  = true
-enable_gke_module        = true
-enable_postgresql_module = true
-enable_mysql_module      = true
-enable_mssql_module      = true
-enable_bq_module         = true
+create_compute_instance      = false
+enable_forseti_server_on_gce = false
+enable_gke_module            = false
+enable_postgresql_module     = false
+enable_mysql_module          = false
+enable_mssql_module          = false
+enable_bq_module             = false
+enable_cloud_function        = false
+enable_cloud_dns             = false
+enable_custom_governance     = false
+enable_gcs_bucket            = false
 

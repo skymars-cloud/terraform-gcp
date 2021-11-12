@@ -58,6 +58,18 @@ variable "create_compute_instance" {
 variable "enable_gke_module" {
   type = bool
 }
+variable "enable_cloud_function" {
+  type = bool
+}
+variable "enable_cloud_dns" {
+  type = bool
+}
+variable "enable_custom_governance" {
+  type = bool
+}
+variable "enable_gcs_bucket" {
+  type = bool
+}
 variable "enable_postgresql_module" {
   type = bool
 }
@@ -70,6 +82,10 @@ variable "enable_mssql_module" {
 variable "enable_bq_module" {
   type = bool
 }
+variable "enable_forseti_server_on_gce" {
+  type = bool
+}
+
 variable "vpc_name" {
   type = string
 }

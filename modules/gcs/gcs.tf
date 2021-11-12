@@ -4,7 +4,10 @@ module "bucket" {
   project_id         = var.project_id
   location           = var.region
   bucket_policy_only = false //CIS Benchmark v1.2 - 5.2 - gcp_storage_bucket_policy_only.yaml
-
+  labels = {
+    cost_center = "cvs pso 2021"
+    department  = "edp lob insurance"
+  }
   lifecycle_rules = [{
     action = {
       type = "Delete"
@@ -28,4 +31,5 @@ module "bucket" {
       //member = "allAuthenticatedUsers"                       //CIS Benchmark v1.2 - 5.1 - gcp_storage_bucket_world_readable.yaml
     }
   ]
+
 }
